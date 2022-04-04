@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grid : MonoBehaviour
+public class CreateGrid : MonoBehaviour
 {
     public int width, height;
     public Tile tilePrefab;
