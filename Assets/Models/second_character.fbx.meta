@@ -1,17 +1,8 @@
 fileFormatVersion: 2
-guid: 3117997e7ba13eb4ebe15698503f1d56
+guid: 7c2add8aa1945784094395499a96f877
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
-  - first:
-      74: -4449717305648701825
-    second: Armature|0TPose
-  - first:
-      74: -8945691123924629249
-    second: Armature|Idle
-  - first:
-      74: -2361876282968253071
-    second: Armature|Movement
   - first:
       74: -1808196191976239669
     second: Armature|PhysAtk
