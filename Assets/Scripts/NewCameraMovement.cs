@@ -11,7 +11,6 @@ public class NewCameraMovement : MonoBehaviour
 
     public int minCamera = 5;
     public int maxCamera = 15;
-    private float height = 10;
     private Camera cam;
 
     // Start is called before the first frame update
@@ -30,7 +29,6 @@ public class NewCameraMovement : MonoBehaviour
         { }                                                                //don't let it zoom
         else if (ScrollWheelChange != 0)
         {
-            height += ScrollWheelChange * -1;
             transform.Translate(ScrollWheelChange * Vector3.down, Space.World);//Move the main camera
         }
 
@@ -39,12 +37,12 @@ public class NewCameraMovement : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
             //dragOrigin = cam.ScreenToWorldPoint(Input.mousePosition);
-            dragOrigin = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, height-0.5f));
+            dragOrigin = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, cam.transform.position.y - 0.5f));
 
 
         if (Input.GetMouseButton(1))
         {
-            dragDifference = dragOrigin - cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, height-0.5f));
+            dragDifference = dragOrigin - cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, cam.transform.position.y - 0.5f));
 
             cam.transform.position += new Vector3(dragDifference.x, 0, dragDifference.z);
         }
