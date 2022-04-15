@@ -27,6 +27,7 @@ public class Unit : MonoBehaviour
     }
 
     Tile getTile() {
-        return GameObject.Find($"Tile {transform.position.x} {transform.position.z}").GetComponent<Tile>();
+        GameObject finding = GameObject.Find($"Tile {transform.position.x} {transform.position.z}");
+        return finding == null ? tile : finding.GetComponent<Tile>();
     }
 }
