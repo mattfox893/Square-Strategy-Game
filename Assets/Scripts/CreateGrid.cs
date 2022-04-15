@@ -6,7 +6,7 @@ public class CreateGrid : MonoBehaviour
 {
     public int width, length;
     public Tile tilePrefab;
-
+    
 
     void Start()
     {

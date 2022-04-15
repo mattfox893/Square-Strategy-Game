@@ -5,13 +5,28 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
     public GameObject highlight;
+    Vector2 position;
+    Unit onTile;
+
+    void Start() {
+        position = new Vector2(transform.position.x, transform.position.z);
+    }
 
     void OnMouseEnter() {
-        highlight.SetActive(true);
+        enableHighlight();
     }
 
     void OnMouseExit() {
-        
+        disableHighlight();
+    }
+
+    
+    public void enableHighlight() {
+        highlight.SetActive(true);
+    }
+
+    public void disableHighlight() {
         highlight.SetActive(false);
     }
+
 }
