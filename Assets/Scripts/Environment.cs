@@ -10,7 +10,7 @@ public class Environment : MonoBehaviour
     void Update() {
         if (tile == null) {
             attr = Tile.Attribute.Impassable;
-            tile = CreateGrid.getTile(transform, tile);
+            tile = CreateGrid.getTile((new Vector2(transform.position.x, transform.position.z)), tile);
             tile.setAttribute(attr);
         }
     }

@@ -24,8 +24,8 @@ public class CreateGrid : MonoBehaviour
         }
     }
 
-    public static Tile getTile(Transform obj, Tile last) {
-        GameObject finding = GameObject.Find($"Tile {obj.position.x} {obj.position.z}");
+    public static Tile getTile(Vector2 pos, Tile last) {
+        GameObject finding = GameObject.Find($"Tile {pos.x} {pos.y}");
         return finding == null ? last : finding.GetComponent<Tile>();
     }
 }

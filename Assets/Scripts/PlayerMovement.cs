@@ -8,27 +8,33 @@ public class PlayerMovement : MonoBehaviour
     bool isMoving;
     Vector3 target;
     Vector3 start;
+    Tile startTile;
+    Tile targetTile;
     // Update is called once per frame
     void Update()
     {
-        if (isMoving  /*&& new Vector2(target.x, target.z) CreateGrid.getTile().getAttribute();*/)
+        startTile = CreateGrid.getTile(new Vector2(start.x, start.z), startTile);
+        targetTile = CreateGrid.getTile(new Vector2(target.x, target.z), startTile);
+        if (isMoving && targetTile.getAttribute() != Tile.Attribute.Impassable)
         {
             moving();
+        } else if (isMoving) {
+            isMoving = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) && !isMoving)
         {
             moveUp();
         }
-        else if (Input.GetKeyDown(KeyCode.A))
+        else if (Input.GetKeyDown(KeyCode.A) && !isMoving)
         {
             moveLeft();
         }
-        else if (Input.GetKeyDown(KeyCode.S))
+        else if (Input.GetKeyDown(KeyCode.S) && !isMoving)
         {
             moveDown();
         }
-        else if (Input.GetKeyDown(KeyCode.D))
+        else if (Input.GetKeyDown(KeyCode.D) && !isMoving)
         {
             moveRight();
         }
