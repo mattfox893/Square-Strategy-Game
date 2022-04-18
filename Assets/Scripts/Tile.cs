@@ -7,6 +7,12 @@ public class Tile : MonoBehaviour
     public GameObject highlight;
     Vector2 position;
     Unit onTile;
+    public enum Attribute {
+        Normal,
+        Impassable,
+        Slow
+    }
+    Attribute attr;
 
     void Start() {
         position = new Vector2(transform.position.x, transform.position.z);
@@ -29,4 +35,7 @@ public class Tile : MonoBehaviour
         highlight.SetActive(false);
     }
 
+    public void setAttribute(Attribute a) {
+        attr = a;
+    }
 }
