@@ -9,7 +9,7 @@ public class Unit : MonoBehaviour
 
     void Start() {
         moveScript = this.GetComponent<PlayerMovement>();
-        tile = getTile();
+        tile = CreateGrid.getTile(transform, tile);
     }
 
     void OnMouseDown() {
@@ -17,17 +17,12 @@ public class Unit : MonoBehaviour
     }
 
     void OnMouseEnter() {
-        tile = getTile();
+        tile = CreateGrid.getTile(transform, tile);
         tile.enableHighlight();
     }
 
     void OnMouseExit() {
-        tile = getTile();
+        tile = CreateGrid.getTile(transform, tile);
         tile.disableHighlight();
-    }
-
-    Tile getTile() {
-        GameObject finding = GameObject.Find($"Tile {transform.position.x} {transform.position.z}");
-        return finding == null ? tile : finding.GetComponent<Tile>();
     }
 }

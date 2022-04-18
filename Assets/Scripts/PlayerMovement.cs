@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isMoving)
+        if (isMoving  /*&& new Vector2(target.x, target.z) CreateGrid.getTile().getAttribute();*/)
         {
             moving();
         }
