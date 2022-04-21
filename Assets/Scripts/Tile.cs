@@ -7,6 +7,7 @@ public class Tile : MonoBehaviour
     public GameObject highlight;
     Vector2 position;
     Unit onTile;
+    Immovables immovable;
     public enum Attribute {
         Normal,
         Impassable,

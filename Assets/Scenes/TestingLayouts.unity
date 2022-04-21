@@ -419,6 +419,10 @@ MonoBehaviour:
   width: 8
   length: 8
   tilePrefab: {fileID: -2787798775974582841, guid: feff0c6db434cb349b3d1a0cc4a30163, type: 3}
+  potion1: {fileID: 1594658295020069202, guid: 1a987c49d4df5564f932fc2a2e5e9768, type: 3}
+  potion2: {fileID: 8192785780500367681, guid: d3df9b13055e70f46a3938e613b09243, type: 3}
+  potion3: {fileID: 5630185691961662964, guid: eb497acfd675615488815f73dc62c71d, type: 3}
+  potion4: {fileID: 5853817931465103654, guid: a22b53a2372cfc54cbe5d828c1e8f45d, type: 3}
 --- !u!4 &715329054
 Transform:
   m_ObjectHideFlags: 0
