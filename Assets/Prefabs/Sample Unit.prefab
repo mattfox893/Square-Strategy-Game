@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 4
+  stats: {fileID: 11400000, guid: ae780d39395574340ac026629a8fb9c5, type: 2}
 --- !u!114 &-753218602101947007
 MonoBehaviour:
   m_ObjectHideFlags: 0

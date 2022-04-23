@@ -428,6 +428,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sample Unit
       objectReference: {fileID: 0}
+    - target: {fileID: 227613732189436903, guid: c4d7b2083b919f34e9a40a663b4d66f5, type: 3}
+      propertyPath: stats
+      value: 
+      objectReference: {fileID: 11400000, guid: ae780d39395574340ac026629a8fb9c5, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4d7b2083b919f34e9a40a663b4d66f5, type: 3}
 --- !u!1 &1766974103
@@ -476,6 +480,10 @@ MonoBehaviour:
   width: 9
   length: 9
   tilePrefab: {fileID: -2787798775974582841, guid: feff0c6db434cb349b3d1a0cc4a30163, type: 3}
+  potion1: {fileID: 0}
+  potion2: {fileID: 0}
+  potion3: {fileID: 0}
+  potion4: {fileID: 0}
 --- !u!1001 &227613732679307642
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -10,11 +10,10 @@ public class PlayerMovement : MonoBehaviour
     Vector3 start;
     Tile startTile;
     Tile targetTile;
+    public Stats stats;
     // Update is called once per frame
     void Update()
     {
-        startTile = CreateGrid.getTile(new Vector2(start.x, start.z), startTile);
-        targetTile = CreateGrid.getTile(new Vector2(target.x, target.z), startTile);
         if (isMoving && targetTile.getAttribute() != Tile.Attribute.Impassable)
         {
             moving();
@@ -22,22 +21,25 @@ public class PlayerMovement : MonoBehaviour
             isMoving = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.W) && !isMoving)
-        {
-            moveUp();
+        if (!isMoving && stats.currMovement > 0) {
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                move("up");
+            }
+            else if (Input.GetKeyDown(KeyCode.A))
+            {
+                move("left");
+            }
+            else if (Input.GetKeyDown(KeyCode.S))
+            {
+                move("down");
+            }
+            else if (Input.GetKeyDown(KeyCode.D))
+            {
+                move("right");
+            }
         }
-        else if (Input.GetKeyDown(KeyCode.A) && !isMoving)
-        {
-            moveLeft();
-        }
-        else if (Input.GetKeyDown(KeyCode.S) && !isMoving)
-        {
-            moveDown();
-        }
-        else if (Input.GetKeyDown(KeyCode.D) && !isMoving)
-        {
-            moveRight();
-        }
+        
     }
 
     void moving() {
@@ -54,6 +56,39 @@ public class PlayerMovement : MonoBehaviour
     void moveRight() {
         target = transform.position + Vector3.right;
         start = transform.position;
+        isMoving = true;
+    }
+
+    void move(string dir) {
+        Vector3 direction = new Vector3(0,0,0);
+
+        switch (dir) 
+        {
+            case "left":
+                direction = new Vector3(-1,0,0);
+                break;
+            case "down":
+                direction = new Vector3(0,0,-1);
+                break;
+            case "right":
+                direction = new Vector3(1,0,0);
+                break;
+            case "up":
+                direction = new Vector3(0,0,1);
+                break;
+            default:
+                Debug.Log($"ERROR! Incorrect Movement Call: {dir}");
+                break;
+        }
+
+        target = transform.position + direction;
+        start = transform.position;
+        startTile = CreateGrid.getTile(new Vector2(start.x, start.z), startTile);
+        targetTile = CreateGrid.getTile(new Vector2(target.x, target.z), startTile);
+        
+        if (targetTile.getAttribute() != Tile.Attribute.Impassable)
+            stats.currMovement -= 1;
+
         isMoving = true;
     }
 

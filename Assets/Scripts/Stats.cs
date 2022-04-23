@@ -20,14 +20,18 @@ public class Stats : ScriptableObject
     public int currRange;
     public int Defense;
     public int currDefense;
+    public int Movement;
+    public int currMovement;
 
     private void OnEnable()
     {
-        Health = currHealth;
-        Speed = currSpeed;
-        Strength = currStrength;
-        Magic = currMagic;
-        Range = currRange;
-        Defense = currDefense;
+        currHealth = Health;
+        currSpeed = Speed;
+        currStrength = Strength;
+        currMagic = Magic;
+        currRange = Range;
+        currDefense = Defense;
+        currMovement = Movement;
+        
     }
 }
