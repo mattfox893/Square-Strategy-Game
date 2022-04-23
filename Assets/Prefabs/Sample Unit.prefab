@@ -111,7 +111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed0b7326f6014dc47bd9e4bfede9b7c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveScript: {fileID: 0}
+  moveScript: {fileID: 227613732189436903}
+  unitStats: {fileID: 11400000, guid: ae780d39395574340ac026629a8fb9c5, type: 2}
 --- !u!114 &227613732189436903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,7 +126,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 4
-  stats: {fileID: 11400000, guid: ae780d39395574340ac026629a8fb9c5, type: 2}
 --- !u!114 &-753218602101947007
 MonoBehaviour:
   m_ObjectHideFlags: 0

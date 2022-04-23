@@ -10,10 +10,12 @@ public class PlayerMovement : MonoBehaviour
     Vector3 start;
     Tile startTile;
     Tile targetTile;
-    public Stats stats;
+    Unit selected;
     // Update is called once per frame
     void Update()
     {
+        selected = UnitSelection.getSelected().Item2;
+
         if (isMoving && targetTile.getAttribute() != Tile.Attribute.Impassable)
         {
             moving();
@@ -21,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
             isMoving = false;
         }
 
-        if (!isMoving && stats.currMovement > 0) {
+        if (!isMoving && selected.getMovement() > 0) {
             if (Input.GetKeyDown(KeyCode.W))
             {
                 move("up");
@@ -87,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
             else
                 moveCost = 1;
 
-        stats.currMovement -= moveCost;
+        selected.moveUnit(moveCost);
 
         isMoving = true;
     }
