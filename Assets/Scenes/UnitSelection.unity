@@ -424,6 +424,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 227613732189436900, guid: c4d7b2083b919f34e9a40a663b4d66f5, type: 3}
+      propertyPath: moveScript
+      value: 
+      objectReference: {fileID: 1512208540}
     - target: {fileID: 227613732189436902, guid: c4d7b2083b919f34e9a40a663b4d66f5, type: 3}
       propertyPath: m_Name
       value: Sample Unit
@@ -434,6 +438,28 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: ae780d39395574340ac026629a8fb9c5, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4d7b2083b919f34e9a40a663b4d66f5, type: 3}
+--- !u!114 &1512208540 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 227613732189436903, guid: c4d7b2083b919f34e9a40a663b4d66f5, type: 3}
+  m_PrefabInstance: {fileID: 1211019863}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1d9b271d9908b049bb73d67961967c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1644182334 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 227613732189436903, guid: c4d7b2083b919f34e9a40a663b4d66f5, type: 3}
+  m_PrefabInstance: {fileID: 227613732679307642}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1d9b271d9908b049bb73d67961967c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1766974103
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,10 +506,6 @@ MonoBehaviour:
   width: 9
   length: 9
   tilePrefab: {fileID: -2787798775974582841, guid: feff0c6db434cb349b3d1a0cc4a30163, type: 3}
-  potion1: {fileID: 0}
-  potion2: {fileID: 0}
-  potion3: {fileID: 0}
-  potion4: {fileID: 0}
 --- !u!1001 &227613732679307642
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -535,6 +557,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 227613732189436900, guid: c4d7b2083b919f34e9a40a663b4d66f5, type: 3}
+      propertyPath: moveScript
+      value: 
+      objectReference: {fileID: 1644182334}
     - target: {fileID: 227613732189436902, guid: c4d7b2083b919f34e9a40a663b4d66f5, type: 3}
       propertyPath: m_Name
       value: Sample Unit 1
