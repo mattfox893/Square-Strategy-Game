@@ -53,14 +53,9 @@ public class PlayerMovement : MonoBehaviour
         return;
     }
 
-    void moveRight() {
-        target = transform.position + Vector3.right;
-        start = transform.position;
-        isMoving = true;
-    }
-
     void move(string dir) {
         Vector3 direction = new Vector3(0,0,0);
+        int moveCost = 0;
 
         switch (dir) 
         {
@@ -87,26 +82,13 @@ public class PlayerMovement : MonoBehaviour
         targetTile = CreateGrid.getTile(new Vector2(target.x, target.z), startTile);
         
         if (targetTile.getAttribute() != Tile.Attribute.Impassable)
-            stats.currMovement -= 1;
+            if (startTile.getAttribute() == Tile.Attribute.Slow)
+                moveCost = 2;
+            else
+                moveCost = 1;
 
-        isMoving = true;
-    }
+        stats.currMovement -= moveCost;
 
-    void moveLeft() {
-        target = transform.position + Vector3.left;
-        start = transform.position;
-        isMoving = true;
-    }
-
-    void moveUp() {
-        target = transform.position + Vector3.forward;
-        start = transform.position;
-        isMoving = true;
-    }
-
-    void moveDown() {
-        target = transform.position + Vector3.back;
-        start = transform.position;
         isMoving = true;
     }
 }
