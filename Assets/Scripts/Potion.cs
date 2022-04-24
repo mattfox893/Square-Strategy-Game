@@ -23,8 +23,4 @@ public class Potion : MonoBehaviour, Immovables
         tile.disableHighlight();
     }
 
-    void Kaboom()
-    {
-        Destroy(this);
-    }
 }
