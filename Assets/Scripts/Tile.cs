@@ -27,7 +27,6 @@ public class Tile : MonoBehaviour
     void OnMouseExit() {
         disableHighlight();
     }
-
     
     public void enableHighlight() {
         highlight.SetActive(true);
@@ -43,5 +42,9 @@ public class Tile : MonoBehaviour
 
     public Attribute getAttribute() {
         return attr;
+    }
+
+    public Unit getUnit() {
+        return onTile;
     }
 }

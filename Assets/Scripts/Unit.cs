@@ -5,6 +5,7 @@ using UnityEngine;
 public class Unit : MonoBehaviour
 {
     Tile tile;
+    public string name;
     public PlayerMovement moveScript;
     public Stats unitStats;
     public bool selectable;
@@ -29,7 +30,8 @@ public class Unit : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 if (hit.transform.name == "Sample Enemy") {
-                    GameObject enemy = GameObject.Find("Sample Enemy");
+                    Unit enemy = GameObject.Find(hit.transform.name).GetComponent<Unit>();
+                    Debug.Log($"enemy = {enemy}");
                     Unit selected = UnitSelection.getSelected().Item2;
                     if (selected != null && Vector3.Distance(enemy.transform.position, selected.transform.position) <= 1.42) {
                         damage(currStrength, false, enemy);
@@ -41,7 +43,6 @@ public class Unit : MonoBehaviour
 
     void OnMouseDown() {
         UnitSelection.setSelected(((new Vector2(transform.position.x, transform.position.z)), this));
-
     }
 
     void OnMouseEnter() {
@@ -81,7 +82,7 @@ public class Unit : MonoBehaviour
         return currDefense;
     }
 
-    public void damage(int amount, bool isMagic, GameObject enemy) {
+    public void damage(int amount, bool isMagic, Unit enemy) {
         int actualDamage = (amount - (isMagic ? currResilience : currDefense));
         
         currHealth -= actualDamage;
@@ -91,8 +92,11 @@ public class Unit : MonoBehaviour
         }
     }
 
-    void death(GameObject unit) {
-        Destroy(unit);
+    void death(Unit unit) {
+        Vector3 trans = unit.transform.position;
+        Vector2 pos = new Vector2(trans.x, trans.z);
+        CreateGrid.getTile(pos, unit.tile).setAttribute(Tile.Attribute.Normal);
+        Destroy(unit.gameObject);
     }
 
 

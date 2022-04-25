@@ -13,16 +13,10 @@ MonoBehaviour:
   m_Name: Default Unit Stats
   m_EditorClassIdentifier: 
   Health: 0
-  currHealth: 0
   Speed: 0
-  currSpeed: 0
   Strength: 0
-  currStrength: 0
   Magic: 0
-  currMagic: 0
   Range: 0
-  currRange: 0
   Defense: 0
-  currDefense: 0
-  Movement: 5
-  currMovement: 0
+  Resilience: 0
+  Movement: 9

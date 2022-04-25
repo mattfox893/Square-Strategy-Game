@@ -6,6 +6,12 @@ ModelImporter:
   - first:
       74: -1808196191976239669
     second: Armature|PhysAtk
+  - first:
+      74: -982115091633673366
+    second: Armature|Death
+  - first:
+      74: -8945691123924629249
+    second: Armature|Idle
   externalObjects: {}
   materials:
     materialImportMode: 2
