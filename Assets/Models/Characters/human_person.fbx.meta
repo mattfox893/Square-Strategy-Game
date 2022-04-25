@@ -18,6 +18,9 @@ ModelImporter:
   - first:
       74: -982115091633673366
     second: Armature|Death
+  - first:
+      74: 2927128859142205446
+    second: Armature|MagAtk
   externalObjects: {}
   materials:
     materialImportMode: 2

@@ -4,14 +4,29 @@ ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
-      74: -1808196191976239669
-    second: Armature|PhysAtk
+      74: -8945691123924629249
+    second: Armature|Idle
+  - first:
+      74: -2361876282968253071
+    second: Armature|Movement
   - first:
       74: -982115091633673366
     second: Armature|Death
   - first:
-      74: -8945691123924629249
-    second: Armature|Idle
+      74: -1808196191976239669
+    second: Armature|PhysAtk
+  - first:
+      74: 4424726396481222772
+    second: PhysAtk
+  - first:
+      74: 3088485898135840662
+    second: Movement
+  - first:
+      74: -3100369314251171874
+    second: Idle
+  - first:
+      74: 4348485665485846014
+    second: Death
   externalObjects: {}
   materials:
     materialImportMode: 2
