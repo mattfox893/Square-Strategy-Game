@@ -30,7 +30,6 @@ public class Unit : MonoBehaviour
             {
                 if (hit.transform.name == "Sample Enemy") {
                     Unit enemy = GameObject.Find(hit.transform.name).GetComponent<Unit>();
-                    Debug.Log($"enemy = {enemy}");
                     Unit selected = UnitSelection.GetSelected().Item2;
                     if (selected != null && Vector3.Distance(enemy.transform.position, selected.transform.position) <= 1.42) {
                         enemy.Damage(currStrength, false);
