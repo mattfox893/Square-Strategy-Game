@@ -19,8 +19,29 @@ public class Unit : MonoBehaviour
         tile = CreateGrid.getTile((new Vector2(transform.position.x, transform.position.z)), tile);
     }
 
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit hit;
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.transform.name == "Sample Enemy") {
+                    GameObject enemy = GameObject.Find("Sample Enemy");
+                    Unit selected = UnitSelection.getSelected().Item2;
+                    if (selected != null && Vector3.Distance(enemy.transform.position, selected.transform.position) <= 1.42) {
+                        damage(currStrength, false, enemy);
+                    }
+                }
+            }
+        }
+    }
+
     void OnMouseDown() {
         UnitSelection.setSelected(((new Vector2(transform.position.x, transform.position.z)), this));
+
     }
 
     void OnMouseEnter() {
@@ -60,19 +81,20 @@ public class Unit : MonoBehaviour
         return currDefense;
     }
 
-    public void damage(int amount, bool isMagic) {
+    public void damage(int amount, bool isMagic, GameObject enemy) {
         int actualDamage = (amount - (isMagic ? currResilience : currDefense));
         
         currHealth -= actualDamage;
 
         if (currHealth <= 0) {
-            death();
+            death(enemy);
         }
     }
 
-    void death() {
-        Destroy(this.gameObject);
+    void death(GameObject unit) {
+        Destroy(unit);
     }
+
 
     private void OnCollisionEnter(Collision collided)
     {
