@@ -11,7 +11,8 @@ public class CameraMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        transform.position = new Vector3(0, (int)((minCamera + maxCamera) / 2), 0);
+        transform.rotation = Quaternion.Euler(new Vector3(90, 0, 0));
     }
 
     // Update is called once per frame
