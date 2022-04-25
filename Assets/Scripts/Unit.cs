@@ -7,11 +7,15 @@ public class Unit : MonoBehaviour
     Tile tile;
     public PlayerMovement moveScript;
     public Stats unitStats;
-    int currHealth, currSpeed, currStrength, currMagic, currRange, currDefense, currMovement;
+    public bool selectable;
+    int currHealth, currSpeed, currStrength, currMagic, currRange, currDefense, currResilience, currMovement;
 
     void Start() {
         InitStats();
+        selectable = true;
         moveScript = this.GetComponent<PlayerMovement>();
+        if (moveScript == null)
+            selectable = false;
         tile = CreateGrid.getTile((new Vector2(transform.position.x, transform.position.z)), tile);
     }
 
@@ -36,6 +40,7 @@ public class Unit : MonoBehaviour
         currMagic = unitStats.Magic;
         currRange = unitStats.Range;
         currDefense = unitStats.Defense;
+        currResilience = unitStats.Resilience;
         currMovement = unitStats.Movement;
     }
 
@@ -45,6 +50,28 @@ public class Unit : MonoBehaviour
 
     public int getMovement() {
         return currMovement;
+    }
+
+    public int getHealth() {
+        return currHealth;
+    }
+
+    public int getDefense() {
+        return currDefense;
+    }
+
+    public void damage(int amount, bool isMagic) {
+        int actualDamage = (amount - (isMagic ? currResilience : currDefense));
+        
+        currHealth -= actualDamage;
+
+        if (currHealth <= 0) {
+            death();
+        }
+    }
+
+    void death() {
+        Destroy(this.gameObject);
     }
 
     private void OnCollisionEnter(Collision collided)
@@ -60,7 +87,11 @@ public class Unit : MonoBehaviour
                 Destroy(collided.gameObject);
                 break;
             case "potion_green_fab_small":
-                currHealth += 5;
+                if (currHealth <= unitStats.Health - 5)
+                    currHealth += 5;
+                else
+                    currHealth += (unitStats.Health - currHealth);
+
                 currDefense += 5;
                 Destroy(collided.gameObject);
                 break;

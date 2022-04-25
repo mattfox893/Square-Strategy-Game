@@ -39,5 +39,6 @@ public class Stats : ScriptableObject
     public int Magic;
     public int Range;
     public int Defense;
+    public int Resilience;
     public int Movement;
 }
