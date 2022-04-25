@@ -23,7 +23,8 @@ public class PlayerMovement : MonoBehaviour
             isMoving = false;
         }
 
-        if (!isMoving && selected.GetMovement() > 0) {
+        if (!isMoving && selected.GetMovement() > 0) 
+        {
             if (Input.GetKeyDown(KeyCode.W))
             {
                 Move("up");
@@ -82,12 +83,18 @@ public class PlayerMovement : MonoBehaviour
         start = transform.position;
         startTile = CreateGrid.GetTile(new Vector2(start.x, start.z), startTile);
         targetTile = CreateGrid.GetTile(new Vector2(target.x, target.z), startTile);
-        
+
         if (targetTile.GetAttribute() != Tile.Attribute.Impassable)
+        {
             if (startTile.GetAttribute() == Tile.Attribute.Slow)
+            {
                 moveCost = 2;
+            }
             else
+            {
                 moveCost = 1;
+            }
+        }
 
         selected.MoveUnit(moveCost);
 
