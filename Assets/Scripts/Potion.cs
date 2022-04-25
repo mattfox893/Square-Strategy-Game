@@ -8,19 +8,19 @@ public class Potion : MonoBehaviour, Immovables
 
     void Start()
     {
-        tile = CreateGrid.getTile((new Vector2(transform.position.x, transform.position.z)), tile);
+        tile = CreateGrid.GetTile((new Vector2(transform.position.x, transform.position.z)), tile);
     }
 
     void OnMouseEnter()
     {
-        tile = CreateGrid.getTile((new Vector2(transform.position.x, transform.position.z)), tile);
-        tile.enableHighlight();
+        tile = CreateGrid.GetTile((new Vector2(transform.position.x, transform.position.z)), tile);
+        tile.EnableHighlight();
     }
 
     void OnMouseExit()
     {
-        tile = CreateGrid.getTile((new Vector2(transform.position.x, transform.position.z)), tile);
-        tile.disableHighlight();
+        tile = CreateGrid.GetTile((new Vector2(transform.position.x, transform.position.z)), tile);
+        tile.DisableHighlight();
     }
 
 }

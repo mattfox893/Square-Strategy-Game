@@ -11,7 +11,7 @@ public class UnitSelection : MonoBehaviour
         selected = (new Vector2(0,0), null);
     }
 
-    public static void setSelected((Vector2, Unit) toSelect)
+    public static void SetSelected((Vector2, Unit) toSelect)
     {
         if (toSelect.Item2.selectable) 
         {
@@ -23,7 +23,7 @@ public class UnitSelection : MonoBehaviour
         }
     }
 
-    public static (Vector2, Unit) getSelected() 
+    public static (Vector2, Unit) GetSelected() 
     {
         return selected;
     }

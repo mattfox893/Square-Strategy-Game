@@ -10,11 +10,11 @@ public class Impassable : MonoBehaviour
     void Update()
     {
         if(lastTile != null) {
-            lastTile.setAttribute(Tile.Attribute.Normal);
+            lastTile.SetAttribute(Tile.Attribute.Normal);
         }
         
-        tile = CreateGrid.getTile((new Vector2(transform.position.x, transform.position.z)), tile);
-        tile.setAttribute(Tile.Attribute.Impassable);
+        tile = CreateGrid.GetTile((new Vector2(transform.position.x, transform.position.z)), tile);
+        tile.SetAttribute(Tile.Attribute.Impassable);
         lastTile = tile;
     }
 }

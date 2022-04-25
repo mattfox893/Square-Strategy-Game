@@ -25,7 +25,7 @@ public class CreateGrid : MonoBehaviour
 
     // pos is the 2d position of the tile on the grid,
     // last is the default tile to return if Unit is not on the tile, usually the last one it was on.
-    public static Tile getTile(Vector2 pos, Tile last) {
+    public static Tile GetTile(Vector2 pos, Tile last) {
         GameObject finding = GameObject.Find($"Tile {pos.x} {pos.y}");
         return finding == null ? last : finding.GetComponent<Tile>();
     }

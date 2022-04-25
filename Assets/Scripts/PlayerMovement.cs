@@ -14,37 +14,37 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        selected = UnitSelection.getSelected().Item2;
+        selected = UnitSelection.GetSelected().Item2;
 
-        if (isMoving && targetTile.getAttribute() != Tile.Attribute.Impassable)
+        if (isMoving && targetTile.GetAttribute() != Tile.Attribute.Impassable)
         {
-            moving();
+            Moving();
         } else if (isMoving) {
             isMoving = false;
         }
 
-        if (!isMoving && selected.getMovement() > 0) {
+        if (!isMoving && selected.GetMovement() > 0) {
             if (Input.GetKeyDown(KeyCode.W))
             {
-                move("up");
+                Move("up");
             }
             else if (Input.GetKeyDown(KeyCode.A))
             {
-                move("left");
+                Move("left");
             }
             else if (Input.GetKeyDown(KeyCode.S))
             {
-                move("down");
+                Move("down");
             }
             else if (Input.GetKeyDown(KeyCode.D))
             {
-                move("right");
+                Move("right");
             }
         }
         
     }
 
-    void moving() {
+    void Moving() {
         if (Vector3.Distance(start, transform.position) > 1f)
         {
             transform.position = target;
@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
         return;
     }
 
-    void move(string dir) {
+    void Move(string dir) {
         Vector3 direction = new Vector3(0,0,0);
         int moveCost = 0;
 
@@ -80,16 +80,16 @@ public class PlayerMovement : MonoBehaviour
 
         target = transform.position + direction;
         start = transform.position;
-        startTile = CreateGrid.getTile(new Vector2(start.x, start.z), startTile);
-        targetTile = CreateGrid.getTile(new Vector2(target.x, target.z), startTile);
+        startTile = CreateGrid.GetTile(new Vector2(start.x, start.z), startTile);
+        targetTile = CreateGrid.GetTile(new Vector2(target.x, target.z), startTile);
         
-        if (targetTile.getAttribute() != Tile.Attribute.Impassable)
-            if (startTile.getAttribute() == Tile.Attribute.Slow)
+        if (targetTile.GetAttribute() != Tile.Attribute.Impassable)
+            if (startTile.GetAttribute() == Tile.Attribute.Slow)
                 moveCost = 2;
             else
                 moveCost = 1;
 
-        selected.moveUnit(moveCost);
+        selected.MoveUnit(moveCost);
 
         isMoving = true;
     }

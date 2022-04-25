@@ -21,30 +21,30 @@ public class Tile : MonoBehaviour
     }
 
     void OnMouseEnter() {
-        enableHighlight();
+        EnableHighlight();
     }
 
     void OnMouseExit() {
-        disableHighlight();
+        DisableHighlight();
     }
     
-    public void enableHighlight() {
+    public void EnableHighlight() {
         highlight.SetActive(true);
     }
 
-    public void disableHighlight() {
+    public void DisableHighlight() {
         highlight.SetActive(false);
     }
 
-    public void setAttribute(Attribute a) {
+    public void SetAttribute(Attribute a) {
         attr = a;
     }
 
-    public Attribute getAttribute() {
+    public Attribute GetAttribute() {
         return attr;
     }
 
-    public Unit getUnit() {
+    public Unit GetUnit() {
         return onTile;
     }
 }

@@ -17,24 +17,23 @@ public class Unit : MonoBehaviour
         moveScript = this.GetComponent<PlayerMovement>();
         if (moveScript == null)
             selectable = false;
-        tile = CreateGrid.getTile((new Vector2(transform.position.x, transform.position.z)), tile);
+        tile = CreateGrid.GetTile((new Vector2(transform.position.x, transform.position.z)), tile);
     }
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            RaycastHit hit;
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out RaycastHit hit))
             {
                 if (hit.transform.name == "Sample Enemy") {
                     Unit enemy = GameObject.Find(hit.transform.name).GetComponent<Unit>();
                     Debug.Log($"enemy = {enemy}");
-                    Unit selected = UnitSelection.getSelected().Item2;
+                    Unit selected = UnitSelection.GetSelected().Item2;
                     if (selected != null && Vector3.Distance(enemy.transform.position, selected.transform.position) <= 1.42) {
-                        damage(currStrength, false, enemy);
+                        enemy.Damage(currStrength, false);
                     }
                 }
             }
@@ -42,17 +41,17 @@ public class Unit : MonoBehaviour
     }
 
     void OnMouseDown() {
-        UnitSelection.setSelected(((new Vector2(transform.position.x, transform.position.z)), this));
+        UnitSelection.SetSelected(((new Vector2(transform.position.x, transform.position.z)), this));
     }
 
     void OnMouseEnter() {
-        tile = CreateGrid.getTile((new Vector2(transform.position.x, transform.position.z)), tile);
-        tile.enableHighlight();
+        tile = CreateGrid.GetTile((new Vector2(transform.position.x, transform.position.z)), tile);
+        tile.EnableHighlight();
     }
 
     void OnMouseExit() {
-        tile = CreateGrid.getTile((new Vector2(transform.position.x, transform.position.z)), tile);
-        tile.disableHighlight();
+        tile = CreateGrid.GetTile((new Vector2(transform.position.x, transform.position.z)), tile);
+        tile.DisableHighlight();
     }
 
     void InitStats() {
@@ -66,37 +65,40 @@ public class Unit : MonoBehaviour
         currMovement = unitStats.Movement;
     }
 
-    public void moveUnit(int dis) {
+    public void MoveUnit(int dis) {
         currMovement -= dis;
     }
 
-    public int getMovement() {
+    public int GetMovement() {
         return currMovement;
     }
 
-    public int getHealth() {
+    public int GetHealth() {
         return currHealth;
     }
 
-    public int getDefense() {
+    public int GetDefense() {
         return currDefense;
     }
 
-    public void damage(int amount, bool isMagic, Unit enemy) {
+    // amount is the raw damage,
+    // isMagic asks if the damage is from a magic or physical weapon,
+    // enemy is the Unit that is being damaged
+    public void Damage(int amount, bool isMagic) {
         int actualDamage = (amount - (isMagic ? currResilience : currDefense));
         
         currHealth -= actualDamage;
 
         if (currHealth <= 0) {
-            death(enemy);
+            Death();
         }
     }
 
-    void death(Unit unit) {
-        Vector3 trans = unit.transform.position;
+    void Death() {
+        Vector3 trans = transform.position;
         Vector2 pos = new Vector2(trans.x, trans.z);
-        CreateGrid.getTile(pos, unit.tile).setAttribute(Tile.Attribute.Normal);
-        Destroy(unit.gameObject);
+        CreateGrid.GetTile(pos, tile).SetAttribute(Tile.Attribute.Normal);
+        Destroy(this.gameObject);
     }
 
 
