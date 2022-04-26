@@ -11,16 +11,24 @@ public class PlayerMovement : MonoBehaviour
     Tile startTile;
     Tile targetTile;
     Unit selected;
+    //Animator animator;
     // Update is called once per frame
+
+    void Start()
+    {
+        //animator = GetComponent<Animator>();
+    }
     void Update()
     {
         selected = UnitSelection.GetSelected().Item2;
 
         if (isMoving && targetTile.GetAttribute() != Tile.Attribute.Impassable)
         {
+            //animator.SetBool("isWalking", true);
             Moving();
         } else if (isMoving) {
             isMoving = false;
+            //animator.SetBool("isWalking", false);
         }
 
         if (!isMoving && selected.GetMovement() > 0) 

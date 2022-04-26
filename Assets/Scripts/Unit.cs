@@ -10,6 +10,7 @@ public class Unit : MonoBehaviour
     public Stats unitStats;
     public bool selectable;
     int currHealth, currSpeed, currStrength, currMagic, currRange, currDefense, currResilience, currMovement;
+    //Animator animator;
 
     void Start() {
         InitStats();
@@ -18,6 +19,7 @@ public class Unit : MonoBehaviour
         if (moveScript == null)
             selectable = false;
         tile = CreateGrid.GetTile((new Vector2(transform.position.x, transform.position.z)), tile);
+        //animator = this.GetComponent<Animator>();
     }
 
     void Update()
@@ -32,7 +34,9 @@ public class Unit : MonoBehaviour
                     Unit enemy = GameObject.Find(hit.transform.name).GetComponent<Unit>();
                     Unit selected = UnitSelection.GetSelected().Item2;
                     if (selected != null && Vector3.Distance(enemy.transform.position, selected.transform.position) <= 1.42) {
+                        //animator.SetBool("attacked", true);
                         enemy.Damage(currStrength, false);
+                        //animator.SetBool("attacked", false);
                     }
                 }
             }
@@ -94,6 +98,7 @@ public class Unit : MonoBehaviour
     }
 
     void Death() {
+        //animator.SetBool("hasDied", true);
         Vector3 trans = transform.position;
         Vector2 pos = new Vector2(trans.x, trans.z);
         CreateGrid.GetTile(pos, tile).SetAttribute(Tile.Attribute.Normal);
