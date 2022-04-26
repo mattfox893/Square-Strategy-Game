@@ -5,7 +5,7 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class CreateGrid : MonoBehaviour
 {
-    public int width, length;
+    public static int width = 9, length = 10;
     public Tile tilePrefab;
 
     void Start()
@@ -35,4 +35,5 @@ public class CreateGrid : MonoBehaviour
         GameObject finding = GameObject.Find($"Tile {pos.x} {pos.y}");
         return finding == null ? last : finding.GetComponent<Tile>();
     }
+
 }
