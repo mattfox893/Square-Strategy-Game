@@ -9,13 +9,16 @@ public class Unit : MonoBehaviour
     public PlayerMovement moveScript;
     public Stats unitStats;
     public bool selectable;
+    Vector2 gridPos;
     int currHealth, currSpeed, currStrength, currMagic, currRange, currDefense, currResilience, currMovement;
     //Animator animator;
 
-    void Start() {
+    void Start() 
+    {
         InitStats();
-        selectable = true;
         moveScript = this.GetComponent<PlayerMovement>();
+        // currently how we determine factions (BAD!)
+        selectable = true;
         if (moveScript == null)
             selectable = false;
         tile = CreateGrid.GetTile((new Vector2(transform.position.x, transform.position.z)), tile);
@@ -24,40 +27,28 @@ public class Unit : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            if (Physics.Raycast(ray, out RaycastHit hit))
-            {
-                if (hit.transform.name == "Sample Enemy") {
-                    Unit enemy = GameObject.Find(hit.transform.name).GetComponent<Unit>();
-                    Unit selected = UnitSelection.GetSelected().Item2;
-                    if (selected != null && Vector3.Distance(enemy.transform.position, selected.transform.position) <= 1.42) {
-                        //animator.SetBool("attacked", true);
-                        enemy.Damage(currStrength, false);
-                        //animator.SetBool("attacked", false);
-                    }
-                }
-            }
-        }
+        gridPos = new Vector2(transform.position.x, transform.position.z);
     }
 
-    void OnMouseDown() {
-        UnitSelection.SetSelected(((new Vector2(transform.position.x, transform.position.z)), this));
+    void OnMouseDown() 
+    {
+        UnitSelection.SetSelected((gridPos, this));
     }
 
-    void OnMouseEnter() {
-        tile = CreateGrid.GetTile((new Vector2(transform.position.x, transform.position.z)), tile);
+    void OnMouseEnter() 
+    {
+        tile = CreateGrid.GetTile(gridPos, tile);
         tile.EnableHighlight();
     }
 
-    void OnMouseExit() {
-        tile = CreateGrid.GetTile((new Vector2(transform.position.x, transform.position.z)), tile);
+    void OnMouseExit() 
+    {
+        tile = CreateGrid.GetTile(gridPos, tile);
         tile.DisableHighlight();
     }
 
-    void InitStats() {
+    void InitStats() 
+    {
         currHealth = unitStats.Health;
         currSpeed = unitStats.Speed;
         currStrength = unitStats.Strength;
@@ -68,71 +59,74 @@ public class Unit : MonoBehaviour
         currMovement = unitStats.Movement;
     }
 
-    public void MoveUnit(int dis) {
+    // Subtracts remaining movement of the current Unit by
+    // dis
+    public void MoveUnit(int dis) 
+    {
         currMovement -= dis;
     }
 
-    public int GetMovement() {
+    public int GetMovement() 
+    {
         return currMovement;
     }
 
-    public int GetHealth() {
+    public int GetHealth() 
+    {
         return currHealth;
     }
 
-    public int GetDefense() {
+    public int GetDefense() 
+    {
         return currDefense;
     }
 
+    public Vector2 GetGridPos()
+    {
+        return gridPos;
+    }
+
+
     // amount is the raw damage,
-    // isMagic asks if the damage is from a magic or physical weapon,
-    // enemy is the Unit that is being damaged
-    public void Damage(int amount, bool isMagic) {
+    // isMagic asks if the damage is from a magic or physical weapon
+    public void Damage(int amount, bool isMagic) 
+    {
         int actualDamage = (amount - (isMagic ? currResilience : currDefense));
         
         currHealth -= actualDamage;
 
-        if (currHealth <= 0) {
+        if (currHealth <= 0) 
+        {
             Death();
         }
     }
 
-    void Death() {
-        //animator.SetBool("hasDied", true);
-        Vector3 trans = transform.position;
-        Vector2 pos = new Vector2(trans.x, trans.z);
-        CreateGrid.GetTile(pos, tile).SetAttribute(Tile.Attribute.Normal);
-        Destroy(this.gameObject);
+    // target is the Unit that the current Unit is attacking.
+    // isMagic asks if the attack is magical in nature, for the purposes
+    // of determining damage.
+    public void Attack(Unit target, bool isMagic)
+    {
+        //animator.SetBool("attacked", true);
+        int damage = isMagic ? currMagic : currStrength;
+        target.Damage(damage, isMagic);
+        //animator.SetBool("attacked", false);
     }
 
-
-    private void OnCollisionEnter(Collision collided)
+    // The current Unit will call this to see if they are in range to hit
+    // target
+    public bool inRange(Unit target)
     {
-        switch (collided.gameObject.name)
-        {
-            case "potion_blue_fab_small":
-                currMagic += 5;
-                Destroy(collided.gameObject);
-                break;
-            case "potion_red_fab_small":
-                currStrength += 5;
-                Destroy(collided.gameObject);
-                break;
-            case "potion_green_fab_small":
-                if (currHealth <= unitStats.Health - 5)
-                    currHealth += 5;
-                else
-                    currHealth += (unitStats.Health - currHealth);
+        // get a float of the distance between the interacting Units
+        float rangeWithin = Vector2.Distance(target.GetGridPos(), gridPos);
+        // return whether the target is within the current Unit's range and not too close/far
+        return (rangeWithin <= currRange && rangeWithin > currRange - 1);
+    }
 
-                currDefense += 5;
-                Destroy(collided.gameObject);
-                break;
-            case "potion_yellow_fab_small":
-                currSpeed += 1;
-                currMovement += 1;
-                Destroy(collided.gameObject);
-                break;
-        }
-        
+    // call this only when the Unit's health is reduced to 0 or they are instantly killed otherwise.
+    void Death() 
+    {
+        //animator.SetBool("hasDied", true);
+        CreateGrid.GetTile(gridPos, tile).SetAttribute(Tile.Attribute.Normal);
+        Destroy(this.gameObject);
     }
 }
