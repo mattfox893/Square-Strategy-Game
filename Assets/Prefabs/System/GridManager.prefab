@@ -45,4 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startWidth: 15
   startLength: 15
-  tilePrefab: {fileID: 0}
+  tilePrefab: {fileID: -2787798775974582841, guid: feff0c6db434cb349b3d1a0cc4a30163, type: 3}
