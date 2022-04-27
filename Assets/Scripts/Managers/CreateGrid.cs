@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,23 +6,46 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class CreateGrid : MonoBehaviour
 {
-    public static int width = 9, length = 10;
+    [SerializeField] int startWidth, startLength;
+    public static int width, length;
     public Tile tilePrefab;
 
     void Start()
     {
+        DestroyPreviousGrid();
+        width = startWidth;
+        length = startLength;
         Generate();
     }
 
-    void Generate() {
+    private void DestroyPreviousGrid()
+    {
+        for (int x = 0; x < 20; x++)
+        {
+            for (int z = 0; z < 20; z++)
+            {
+                Tile currTile = CreateGrid.GetTile(new Vector2(x, z), null);
+                if (currTile != null)
+                {
+                    DestroyImmediate(currTile.gameObject);
+                }
+            }
+        }
+    }
+
+    private void Generate() 
+    {
         for (int x = 0; x < width; x++)
         {
             for (int z = 0; z < length; z++)
             {
-                Vector3 newTileLoc = new Vector3(x, 0, z);
-                var newTile = Instantiate(tilePrefab, newTileLoc, Quaternion.identity);
-                newTile.name = $"Tile {x} {z}";
-                newTile.transform.parent = this.gameObject.transform;
+                if (CreateGrid.GetTile(new Vector2(x, z), null) == null)
+                {
+                    Vector3 newTileLoc = new Vector3(x, 0, z);
+                    var newTile = Instantiate(tilePrefab, newTileLoc, Quaternion.identity);
+                    newTile.name = $"Tile {x} {z}";
+                    newTile.transform.parent = this.gameObject.transform;
+                }
             }
         }
         /*foreach (GameObject Child in transform) {
@@ -31,7 +55,8 @@ public class CreateGrid : MonoBehaviour
 
     // pos is the 2d position of the tile on the grid,
     // last is the default tile to return if Unit is not on the tile, usually the last one it was on.
-    public static Tile GetTile(Vector2 pos, Tile last) {
+    public static Tile GetTile(Vector2 pos, Tile last) 
+    {
         GameObject finding = GameObject.Find($"Tile {pos.x} {pos.y}");
         return finding == null ? last : finding.GetComponent<Tile>();
     }
