@@ -22,34 +22,34 @@ public class PlayerMovement : MonoBehaviour
     {
         selected = UnitSelection.GetSelected().Item2;
 
-        if (isMoving && targetTile.GetAttribute() != Tile.Attribute.Impassable)
-        {
-            //animator.SetBool("isWalking", true);
-            Moving();
-        } else if (isMoving) {
-            isMoving = false;
-            //animator.SetBool("isWalking", false);
-        }
+            if (isMoving && targetTile.GetAttribute() != Attribute.Impassable)
+            {
+                //animator.SetBool("isWalking", true);
+                Moving();
+            } else if (isMoving) {
+                isMoving = false;
+                //animator.SetBool("isWalking", false);
+            }
 
-        if (!isMoving && selected.GetMovement() > 0) 
-        {
-            if (Input.GetKeyDown(KeyCode.W))
+            if (!isMoving && selected.GetMovement() > 0) 
             {
-                Move("up");
+                if (Input.GetKeyDown(KeyCode.W))
+                {
+                    Move("up");
+                }
+                else if (Input.GetKeyDown(KeyCode.A))
+                {
+                    Move("left");
+                }
+                else if (Input.GetKeyDown(KeyCode.S))
+                {
+                    Move("down");
+                }
+                else if (Input.GetKeyDown(KeyCode.D))
+                {
+                    Move("right");
+                }
             }
-            else if (Input.GetKeyDown(KeyCode.A))
-            {
-                Move("left");
-            }
-            else if (Input.GetKeyDown(KeyCode.S))
-            {
-                Move("down");
-            }
-            else if (Input.GetKeyDown(KeyCode.D))
-            {
-                Move("right");
-            }
-        }
         
     }
 
@@ -89,12 +89,12 @@ public class PlayerMovement : MonoBehaviour
 
         target = transform.position + direction;
         start = transform.position;
-        startTile = CreateGrid.GetTile(new Vector2(start.x, start.z), startTile);
-        targetTile = CreateGrid.GetTile(new Vector2(target.x, target.z), startTile);
+        startTile = GridManager.GetTile(new Vector2(start.x, start.z), startTile);
+        targetTile = GridManager.GetTile(new Vector2(target.x, target.z), startTile);
 
-        if (targetTile.GetAttribute() != Tile.Attribute.Impassable)
+        if (targetTile.GetAttribute() != Attribute.Impassable)
         {
-            if (startTile.GetAttribute() == Tile.Attribute.Slow)
+            if (startTile.GetAttribute() == Attribute.Slow)
             {
                 moveCost = 2;
             }

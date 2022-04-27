@@ -11,11 +11,11 @@ public class Slowing : MonoBehaviour
     {
         if (lastTile != null)
         {
-            lastTile.SetAttribute(Tile.Attribute.Normal);
+            lastTile.SetAttribute(Attribute.Normal);
         }
 
-        tile = CreateGrid.GetTile((new Vector2(transform.position.x, transform.position.z)), tile);
-        tile.SetAttribute(Tile.Attribute.Slow);
+        tile = GridManager.GetTile(GridManager.to2D(transform), tile);
+        tile.SetAttribute(Attribute.Slow);
         lastTile = tile;
     }
 }

@@ -15,7 +15,7 @@ public class UnitSelection : MonoBehaviour
 
     public static void SetSelected((Vector2, Unit) toSelect)
     {
-        selectedTile = CreateGrid.GetTile(toSelect.Item1, selectedTile);
+        selectedTile = GridManager.GetTile(toSelect.Item1, selectedTile);
         // if the unit selected is allowed to be selected,
         if (toSelect.Item2.selectable) 
         {
@@ -23,11 +23,11 @@ public class UnitSelection : MonoBehaviour
             if (selected.Item2 != null)
             {
                 selected.Item2.moveScript.enabled = false;
-                selectedTile.SetAttribute(Tile.Attribute.Impassable);
+                selectedTile.SetAttribute(Attribute.Impassable);
             }
 
             // while selected, starting tile attribute is normal and move script is enabled
-            selectedTile.SetAttribute(Tile.Attribute.Normal);
+            selectedTile.SetAttribute(Attribute.Normal);
             selected = toSelect;
             selected.Item2.moveScript.enabled = true;
         }

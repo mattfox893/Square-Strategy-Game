@@ -8,11 +8,6 @@ public class Tile : MonoBehaviour
     Vector2 position;
     Unit onTile;
     Immovables immovable;
-    public enum Attribute {
-        Normal,
-        Impassable,
-        Slow
-    }
     Attribute attr;
 
     void Start() {
@@ -47,4 +42,11 @@ public class Tile : MonoBehaviour
     public Unit GetUnit() {
         return onTile;
     }
+}
+
+public enum Attribute
+{
+    Normal = 0,
+    Impassable = 1,
+    Slow = 2
 }
