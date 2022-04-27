@@ -47,8 +47,8 @@ public class NewCameraMovement : MonoBehaviour
             dragDifference = dragOrigin - cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, cam.transform.position.y - 0.5f));
 
             Vector3 temp = cam.transform.position + new Vector3(dragDifference.x, 0, dragDifference.z);
-            temp.x = Mathf.Min(Mathf.Max(0, temp.x), CreateGrid.width);
-            temp.z = Mathf.Min(Mathf.Max(0, temp.z), CreateGrid.length);
+            temp.x = Mathf.Min(Mathf.Max(0, temp.x), GridManager.width);
+            temp.z = Mathf.Min(Mathf.Max(0, temp.z), GridManager.length);
             cam.transform.position = temp;
 
         }
@@ -57,7 +57,7 @@ public class NewCameraMovement : MonoBehaviour
             Vector3 mousePos = Input.mousePosition;
 
             // up and down
-            if (mousePos.y >= Screen.height - 10 && transform.position.z <= CreateGrid.length)
+            if (mousePos.y >= Screen.height - 10 && transform.position.z <= GridManager.length)
             {
                 transform.Translate(speed * Vector3.forward * Time.deltaTime, Space.World);
             }
@@ -67,7 +67,7 @@ public class NewCameraMovement : MonoBehaviour
             }
 
             // left and right
-            if (mousePos.x >= Screen.width - 10 && transform.position.x <= CreateGrid.width)
+            if (mousePos.x >= Screen.width - 10 && transform.position.x <= GridManager.width)
             {
                 transform.Translate(speed * Vector3.right * Time.deltaTime, Space.World);
             }

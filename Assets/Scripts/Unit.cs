@@ -21,7 +21,7 @@ public class Unit : MonoBehaviour
         selectable = true;
         if (moveScript == null)
             selectable = false;
-        tile = CreateGrid.GetTile((new Vector2(transform.position.x, transform.position.z)), tile);
+        tile = GridManager.GetTile((new Vector2(transform.position.x, transform.position.z)), tile);
         //animator = this.GetComponent<Animator>();
     }
 
@@ -37,13 +37,13 @@ public class Unit : MonoBehaviour
 
     void OnMouseEnter() 
     {
-        tile = CreateGrid.GetTile(gridPos, tile);
+        tile = GridManager.GetTile(gridPos, tile);
         tile.EnableHighlight();
     }
 
     void OnMouseExit() 
     {
-        tile = CreateGrid.GetTile(gridPos, tile);
+        tile = GridManager.GetTile(gridPos, tile);
         tile.DisableHighlight();
     }
 
@@ -126,7 +126,19 @@ public class Unit : MonoBehaviour
     void Death() 
     {
         //animator.SetBool("hasDied", true);
-        CreateGrid.GetTile(gridPos, tile).SetAttribute(Tile.Attribute.Normal);
+        GridManager.GetTile(gridPos, tile).SetAttribute(Attribute.Normal);
         Destroy(this.gameObject);
     }
+}
+
+public enum Team
+{
+    Ally = 0,
+    Enemy = 1
+}
+
+public enum UnitState
+{
+    NotActed = 0,
+    Acted = 1
 }

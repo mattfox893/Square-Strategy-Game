@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteInEditMode]
-public class CreateGrid : MonoBehaviour
+public class GridManager : MonoBehaviour
 {
     [SerializeField] int startWidth, startLength;
     public static int width, length;
@@ -24,7 +24,7 @@ public class CreateGrid : MonoBehaviour
         {
             for (int z = 0; z < 20; z++)
             {
-                Tile currTile = CreateGrid.GetTile(new Vector2(x, z), null);
+                Tile currTile = GridManager.GetTile(new Vector2(x, z), null);
                 if (currTile != null)
                 {
                     DestroyImmediate(currTile.gameObject);
@@ -39,7 +39,7 @@ public class CreateGrid : MonoBehaviour
         {
             for (int z = 0; z < length; z++)
             {
-                if (CreateGrid.GetTile(new Vector2(x, z), null) == null)
+                if (GridManager.GetTile(new Vector2(x, z), null) == null)
                 {
                     Vector3 newTileLoc = new Vector3(x, 0, z);
                     var newTile = Instantiate(tilePrefab, newTileLoc, Quaternion.identity);
@@ -61,4 +61,9 @@ public class CreateGrid : MonoBehaviour
         return finding == null ? last : finding.GetComponent<Tile>();
     }
 
+    public static Vector2 to2D(Transform transform)
+    {
+        return new Vector2(transform.position.x, transform.position.z);
+    }
 }
+

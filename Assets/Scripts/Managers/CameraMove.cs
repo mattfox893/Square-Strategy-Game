@@ -33,7 +33,7 @@ public class CameraMove : MonoBehaviour
         Vector3 mousePos = Input.mousePosition;
 
         // up and down
-        if (mousePos.y >= Screen.height - 10 && transform.position.z <= CreateGrid.length){
+        if (mousePos.y >= Screen.height - 10 && transform.position.z <= GridManager.length){
             transform.Translate(speed * Vector3.forward * Time.deltaTime, Space.World);
         }
         else if (mousePos.y <= 10 && transform.position.z >= 0)
@@ -42,7 +42,7 @@ public class CameraMove : MonoBehaviour
         }
 
         // left and right
-        if (mousePos.x >= Screen.width - 10 && transform.position.x <= CreateGrid.width)
+        if (mousePos.x >= Screen.width - 10 && transform.position.x <= GridManager.width)
         {
             transform.Translate(speed * Vector3.right * Time.deltaTime, Space.World);
         }
