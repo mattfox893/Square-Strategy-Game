@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 227613732189436890}
   - component: {fileID: 227613732189436901}
   - component: {fileID: 227613732189436900}
-  - component: {fileID: 227613732189436903}
   m_Layer: 0
   m_Name: Sample Unit
   m_TagString: Untagged
@@ -111,19 +110,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: 
-  moveScript: {fileID: 227613732189436903}
   unitStats: {fileID: 11400000, guid: ae780d39395574340ac026629a8fb9c5, type: 2}
-  selectable: 0
---- !u!114 &227613732189436903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 227613732189436902}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1d9b271d9908b049bb73d67961967c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 4
+  team: 0
