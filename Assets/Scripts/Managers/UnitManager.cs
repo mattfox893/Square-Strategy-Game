@@ -8,9 +8,14 @@ public class UnitManager : MonoBehaviour
     public List<Unit> units;
     public static UnitManager Instance;
 
-    private void Start()
+    private void Awake()
     {
         Instance = this;
+        
+    }
+
+    private void Start()
+    {
         units = Resources.LoadAll<Unit>("Units").ToList();
     }
 
