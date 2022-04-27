@@ -11,6 +11,7 @@ public class Tile : MonoBehaviour
     Attribute attr;
 
     void Start() {
+        attr = Attribute.Normal;
         position = new Vector2(transform.position.x, transform.position.z);
     }
 

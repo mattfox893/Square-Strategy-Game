@@ -6,9 +6,9 @@ public class Unit : MonoBehaviour
 {
     Tile tile;
     public string name;
+    public PlayerMovement moveScript;
     public Stats unitStats;
-    [SerializeField] public Team team;
-    UnitState state;
+    public bool selectable;
     Vector2 gridPos;
     int currHealth, currSpeed, currStrength, currMagic, currRange, currDefense, currResilience, currMovement;
     //Animator animator;
@@ -16,37 +16,34 @@ public class Unit : MonoBehaviour
     void Start() 
     {
         InitStats();
-        state = UnitState.NotActed;
-        gridPos = GetGridPos();
-        tile = GetTile();
-        tile.SetAttribute(Attribute.Impassable);
+        moveScript = this.GetComponent<PlayerMovement>();
+        // currently how we determine factions (BAD!)
+        selectable = true;
+        if (moveScript == null)
+            selectable = false;
+        tile = GridManager.GetTile((new Vector2(transform.position.x, transform.position.z)), tile);
         //animator = this.GetComponent<Animator>();
     }
 
     void Update()
     {
-        gridPos = GetGridPos();
-        tile = GetTile();
-        if (UnitSelection.selected != this)
-        {
-            tile.SetAttribute(Attribute.Impassable);
-        }
+        gridPos = new Vector2(transform.position.x, transform.position.z);
     }
 
     void OnMouseDown() 
     {
-        UnitSelection.SetSelected(this);
+        UnitSelection.SetSelected((gridPos, this));
     }
 
     void OnMouseEnter() 
     {
-        tile = GetTile();
+        tile = GridManager.GetTile(gridPos, tile);
         tile.EnableHighlight();
     }
 
     void OnMouseExit() 
     {
-        tile = GetTile();
+        tile = GridManager.GetTile(gridPos, tile);
         tile.DisableHighlight();
     }
 
@@ -60,11 +57,6 @@ public class Unit : MonoBehaviour
         currDefense = unitStats.Defense;
         currResilience = unitStats.Resilience;
         currMovement = unitStats.Movement;
-    }
-
-    public Tile GetTile()
-    {
-        return GridManager.GetTile(gridPos, tile);
     }
 
     // Subtracts remaining movement of the current Unit by
@@ -91,7 +83,7 @@ public class Unit : MonoBehaviour
 
     public Vector2 GetGridPos()
     {
-        return new Vector2(transform.position.x, transform.position.z);
+        return gridPos;
     }
 
 
@@ -134,17 +126,8 @@ public class Unit : MonoBehaviour
     void Death() 
     {
         //animator.SetBool("hasDied", true);
-        tile = GetTile();
-        tile.SetAttribute(Attribute.Normal);
+        GridManager.GetTile(gridPos, tile).SetAttribute(Attribute.Normal);
         Destroy(this.gameObject);
-    }
-
-    public void TurnReset()
-    {
-        tile = GetTile();
-        tile.SetAttribute(Attribute.Impassable);
-        currMovement = unitStats.Movement;
-        state = UnitState.NotActed;
     }
 }
 

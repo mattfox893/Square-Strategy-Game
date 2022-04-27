@@ -11,67 +11,56 @@ public class PlayerMovement : MonoBehaviour
     Tile startTile;
     Tile targetTile;
     Unit selected;
-    public static PlayerMovement Instance;
     //Animator animator;
     // Update is called once per frame
 
     void Start()
     {
         //animator = GetComponent<Animator>();
-        Instance = this;
     }
     void Update()
     {
-        // if a Unit has been selected,
-        if (UnitSelection.GetSelected() != null)
-        {
-            // set the local selected to the static selected Unit
-            selected = UnitSelection.GetSelected();
+        selected = UnitSelection.GetSelected().Item2;
 
-            // if the selected Unit is of team Ally and it is the player's turn,
-            if (selected.team == Team.Ally && TurnManager.Instance.turn == TurnState.PlayerTurn)
+            if (isMoving && targetTile.GetAttribute() != Attribute.Impassable)
             {
-                if (isMoving && targetTile.GetAttribute() != Attribute.Impassable)
-                {
-                    //animator.SetBool("isWalking", true);
-                    Moving();
-                }
-                else if (isMoving)
-                {
-                    isMoving = false;
-                    //animator.SetBool("isWalking", false);
-                }
+                //animator.SetBool("isWalking", true);
+                Moving();
+            } else if (isMoving) {
+                isMoving = false;
+                //animator.SetBool("isWalking", false);
+            }
 
-                if (!isMoving && selected.GetMovement() > 0)
+            if (!isMoving && selected.GetMovement() > 0) 
+            {
+                if (Input.GetKeyDown(KeyCode.W))
                 {
-                    if (Input.GetKeyDown(KeyCode.W))
-                    {
-                        Move("up");
-                    }
-                    else if (Input.GetKeyDown(KeyCode.A))
-                    {
-                        Move("left");
-                    }
-                    else if (Input.GetKeyDown(KeyCode.S))
-                    {
-                        Move("down");
-                    }
-                    else if (Input.GetKeyDown(KeyCode.D))
-                    {
-                        Move("right");
-                    }
+                    Move("up");
+                }
+                else if (Input.GetKeyDown(KeyCode.A))
+                {
+                    Move("left");
+                }
+                else if (Input.GetKeyDown(KeyCode.S))
+                {
+                    Move("down");
+                }
+                else if (Input.GetKeyDown(KeyCode.D))
+                {
+                    Move("right");
                 }
             }
-        }
+        
     }
 
     void Moving() {
-        if (Vector3.Distance(start, selected.transform.position) > 1f)
+        if (Vector3.Distance(start, transform.position) > 1f)
         {
+            transform.position = target;
             isMoving = false;
             return;
         }
-        selected.transform.position += (target - start) * moveSpeed * Time.deltaTime;
+        transform.position += (target - start) * moveSpeed * Time.deltaTime;
         return;
     }
 
@@ -98,8 +87,8 @@ public class PlayerMovement : MonoBehaviour
                 break;
         }
 
-        target = selected.transform.position + direction;
-        start = selected.transform.position;
+        target = transform.position + direction;
+        start = transform.position;
         startTile = GridManager.GetTile(new Vector2(start.x, start.z), startTile);
         targetTile = GridManager.GetTile(new Vector2(target.x, target.z), startTile);
 

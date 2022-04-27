@@ -5,11 +5,9 @@ using UnityEngine;
 public class TurnManager : MonoBehaviour
 {
     public TurnState turn;
-    public static TurnManager Instance;
 
     private void Start()
     {
-        Instance = this;
         ChangeState(TurnState.PlayerTurn);
     }
 
@@ -21,7 +19,6 @@ public class TurnManager : MonoBehaviour
         {
             case TurnState.PlayerTurn:
                 // logic for the start of player turn
-                UnitManager.Instance.ResetUnits(Team.Ally);
                 break;
             case TurnState.EnemyTurn:
                 // logic for the start of enemy turn

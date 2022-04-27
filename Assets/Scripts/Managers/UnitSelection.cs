@@ -4,41 +4,36 @@ using UnityEngine;
 
 public class UnitSelection : MonoBehaviour
 {
-    public static Unit selected;
+    public static (Vector2, Unit) selected;
     public static Tile selectedTile;
 
     void Start() 
     {
-        selected = null;
+        selected = (new Vector2(0,0), null);
         selectedTile = null;
     }
 
-    public static void SetSelected(Unit toSelect)
+    public static void SetSelected((Vector2, Unit) toSelect)
     {
-        if (toSelect == null)
-            return;
-
-        selectedTile = GridManager.GetTile(toSelect.GetGridPos(), selectedTile);
-
-        if (selectedTile == null)
-            return;
-
-        // if the Unit selected is of Team Ally,
-        if (toSelect.team == Team.Ally) 
+        selectedTile = GridManager.GetTile(toSelect.Item1, selectedTile);
+        // if the unit selected is allowed to be selected,
+        if (toSelect.Item2.selectable) 
         {
-            // on selection, do this
+            // if there was a previously selected unit, disable its move script and make it impassable
+            if (selected.Item2 != null)
+            {
+                selected.Item2.moveScript.enabled = false;
+                selectedTile.SetAttribute(Attribute.Impassable);
+            }
+
+            // while selected, starting tile attribute is normal and move script is enabled
             selectedTile.SetAttribute(Attribute.Normal);
             selected = toSelect;
-        }
-
-        // if the Unit selected is of Team Enemy,
-        if (toSelect.team == Team.Enemy)
-        {
-            selected = toSelect;
+            selected.Item2.moveScript.enabled = true;
         }
     }
 
-    public static Unit GetSelected() 
+    public static (Vector2, Unit) GetSelected() 
     {
         return selected;
     }

@@ -5,24 +5,17 @@ using UnityEngine;
 
 public class UnitManager : MonoBehaviour
 {
+    public UnitState state;
     public List<Unit> units;
-    public static UnitManager Instance;
 
     private void Start()
     {
-        Instance = this;
         units = Resources.LoadAll<Unit>("Units").ToList();
+        ChangeState(UnitState.NotActed);
     }
 
-    // Called at the start of a turn for Team team
-    public void ResetUnits(Team team)
+    public void ChangeState(UnitState newState)
     {
-        foreach(Unit unit in units)
-        {
-            if (unit.team == team)
-            {
-                unit.TurnReset();
-            }
-        }
+        state = newState;
     }
 }
