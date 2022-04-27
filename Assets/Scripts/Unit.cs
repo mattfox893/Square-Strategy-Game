@@ -8,7 +8,7 @@ public class Unit : MonoBehaviour
     public string name;
     public Stats unitStats;
     [SerializeField] public Team team;
-    UnitState state;
+    public UnitState state;
     Vector2 gridPos;
     int currHealth, currSpeed, currStrength, currMagic, currRange, currDefense, currResilience, currMovement;
     //Animator animator;
@@ -139,12 +139,20 @@ public class Unit : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    public void TurnReset()
+    public void StartTurn()
     {
         tile = GetTile();
         tile.SetAttribute(Attribute.Impassable);
         currMovement = unitStats.Movement;
         state = UnitState.NotActed;
+    }
+
+    public void EndTurn()
+    {
+        tile = GetTile();
+        tile.SetAttribute(Attribute.Impassable);
+        currMovement = 0;
+        state = UnitState.Acted;
     }
 }
 

@@ -9,8 +9,7 @@ public class UnitSelection : MonoBehaviour
 
     void Start() 
     {
-        selected = null;
-        selectedTile = null;
+        Deselect();
     }
 
     public static void SetSelected(Unit toSelect)
@@ -36,6 +35,12 @@ public class UnitSelection : MonoBehaviour
         {
             selected = toSelect;
         }
+    }
+
+    public static void Deselect()
+    {
+        selected = null;
+        selectedTile = null;
     }
 
     public static Unit GetSelected() 

@@ -9,6 +9,7 @@ public class GridManager : MonoBehaviour
     [SerializeField] int startWidth, startLength;
     public static int width, length;
     public Tile tilePrefab;
+    public static GridManager Instance;
 
     void Start()
     {
