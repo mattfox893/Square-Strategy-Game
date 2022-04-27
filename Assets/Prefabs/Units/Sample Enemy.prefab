@@ -110,6 +110,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: 
-  moveScript: {fileID: 0}
   unitStats: {fileID: 11400000, guid: ae780d39395574340ac026629a8fb9c5, type: 2}
-  selectable: 0
+  team: 1

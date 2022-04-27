@@ -57,7 +57,9 @@ public class GridManager : MonoBehaviour
     // last is the default tile to return if Unit is not on the tile, usually the last one it was on.
     public static Tile GetTile(Vector2 pos, Tile last) 
     {
-        GameObject finding = GameObject.Find($"Tile {pos.x} {pos.y}");
+        int nearestX = (int)Math.Round(pos.x);
+        int nearestY = (int)Math.Round(pos.y);
+        GameObject finding = GameObject.Find($"Tile {nearestX} {nearestY}");
         return finding == null ? last : finding.GetComponent<Tile>();
     }
 
