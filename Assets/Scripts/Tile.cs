@@ -7,7 +7,6 @@ public class Tile : MonoBehaviour
     public GameObject highlight;
     Vector2 position;
     Unit onTile;
-    Immovables immovable;
     Attribute attr;
 
     void Start() {

@@ -21,7 +21,7 @@ public class Unit : MonoBehaviour
         gridPos = GetGridPos();
         tile = GetTile();
         tile.SetAttribute(Attribute.Impassable);
-        potions.Item1 = new string[10];
+        potions.Item1 = new string[4];
         potions.Item2 = 0;
         //animator = this.GetComponent<Animator>();
     }
@@ -90,6 +90,11 @@ public class Unit : MonoBehaviour
                 }
                 break;
         }
+    }
+
+    public string[] GetInventory()
+    {
+        return potions.Item1;
     }
 
     void InitStats() 
