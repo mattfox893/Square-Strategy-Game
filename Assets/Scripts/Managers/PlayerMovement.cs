@@ -20,7 +20,6 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-        // if a Unit has been selected,
         if (UnitSelection.GetSelected() != null)
         {
             // set the local selected to the static selected Unit
@@ -29,67 +28,49 @@ public class PlayerMovement : MonoBehaviour
             // if the selected Unit is of team Ally and it is the player's turn,
             if (selected.team == Team.Ally && TurnManager.Instance.turn == TurnState.PlayerTurn)
             {
-                if (isMoving && targetTile.GetAttribute() != Attribute.Impassable)
-                {
-                    //animator.SetBool("isWalking", true);
-                    Moving();
-                }
-                else if (isMoving)
-                {
-                    isMoving = false;
-                    //animator.SetBool("isWalking", false);
-                }
-
+                // if we aren't already moving, the selected Unit has movement left, and it hasn't ended its own turn,
                 if (!isMoving && selected.GetMovement() > 0 && selected.state == UnitState.NotActed)
                 {
                     if (Input.GetKeyDown(KeyCode.W))
                     {
-                        Move("up");
+                        StartCoroutine(Move("up"));
                     }
                     else if (Input.GetKeyDown(KeyCode.A))
                     {
-                        Move("left");
+                        StartCoroutine(Move("left"));
                     }
                     else if (Input.GetKeyDown(KeyCode.S))
                     {
-                        Move("down");
+                        StartCoroutine(Move("down"));
                     }
                     else if (Input.GetKeyDown(KeyCode.D))
                     {
-                        Move("right");
+                        StartCoroutine(Move("right"));
                     }
                 }
             }
         }
     }
 
-    void Moving() {
-        if (Vector3.Distance(start, selected.transform.position) > 1f)
-        {
-            isMoving = false;
-            return;
-        }
-        selected.transform.position += (target - start) * moveSpeed * Time.deltaTime;
-        return;
-    }
-
-    void Move(string dir) {
-        Vector3 direction = new Vector3(0,0,0);
+    IEnumerator Move(string dir)
+    {
+        isMoving = true;
+        Vector3 direction = new Vector3(0, 0, 0);
         int moveCost = 0;
 
-        switch (dir) 
+        switch (dir)
         {
             case "left":
-                direction = new Vector3(-1,0,0);
+                direction = new Vector3(-1, 0, 0);
                 break;
             case "down":
-                direction = new Vector3(0,0,-1);
+                direction = new Vector3(0, 0, -1);
                 break;
             case "right":
-                direction = new Vector3(1,0,0);
+                direction = new Vector3(1, 0, 0);
                 break;
             case "up":
-                direction = new Vector3(0,0,1);
+                direction = new Vector3(0, 0, 1);
                 break;
             default:
                 Debug.Log($"ERROR! Incorrect Movement Call: {dir}");
@@ -111,10 +92,17 @@ public class PlayerMovement : MonoBehaviour
             {
                 moveCost = 1;
             }
+
+            selected.MoveUnit(moveCost);
+
+            while (Vector3.Distance(start, selected.transform.position) <= 1f)
+            {
+                selected.transform.position += (target - start) * moveSpeed * Time.deltaTime;
+                yield return null;
+            }
+
+            selected.transform.position = target;
         }
-
-        selected.MoveUnit(moveCost);
-
-        isMoving = true;
+        isMoving = false;
     }
 }
