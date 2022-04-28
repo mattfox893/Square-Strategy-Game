@@ -165,5 +165,6 @@ public enum Team
 public enum UnitState
 {
     NotActed = 0,
-    Acted = 1
+    Acted = 1,
+    ActReady = 2
 }

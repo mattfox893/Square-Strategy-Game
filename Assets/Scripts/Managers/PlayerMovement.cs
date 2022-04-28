@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
                     //animator.SetBool("isWalking", false);
                 }
 
-                if (!isMoving && selected.GetMovement() > 0)
+                if (!isMoving && selected.GetMovement() > 0 && selected.state == UnitState.NotActed)
                 {
                     if (Input.GetKeyDown(KeyCode.W))
                     {
