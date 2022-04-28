@@ -51,9 +51,9 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        //debugging...
+        /*//debugging...
         if (Input.GetKeyDown(KeyCode.Space) && TurnManager.Instance.turn == TurnState.PlayerTurn)
-            TurnManager.Instance.ChangeState(TurnState.EnemyTurn);
+            TurnManager.Instance.ChangeState(TurnState.EnemyTurn);*/
     }
 
     IEnumerator Move(string dir)
