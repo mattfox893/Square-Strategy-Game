@@ -33,6 +33,12 @@ public class UnitSelection : MonoBehaviour
         // if the Unit selected is of Team Enemy,
         if (toSelect.team == Team.Enemy)
         {
+            // if the previously selected Unit was of team Ally and waiting to select target,
+            if (selected != null && selected.team == Team.Ally && selected.state == UnitState.ActReady)
+            {
+                // do something like set the valid target and change states
+            }
+
             selected = toSelect;
         }
     }
