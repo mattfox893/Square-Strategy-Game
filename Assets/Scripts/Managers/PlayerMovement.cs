@@ -11,14 +11,12 @@ public class PlayerMovement : MonoBehaviour
     Tile startTile;
     Tile targetTile;
     Unit selected;
-    public static PlayerMovement Instance;
     //Animator animator;
     // Update is called once per frame
 
     void Start()
     {
         //animator = GetComponent<Animator>();
-        Instance = this;
     }
     void Update()
     {
