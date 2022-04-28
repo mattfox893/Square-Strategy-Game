@@ -12,7 +12,7 @@ public class Unit : MonoBehaviour
     Vector2 gridPos;
     int currHealth, currSpeed, currStrength, currMagic, currRange, currDefense, currResilience, currMovement;
     //Animator animator;
-    (string[], int) potions;
+    public Inventory inventory;
 
     void Start() 
     {
@@ -21,10 +21,7 @@ public class Unit : MonoBehaviour
         gridPos = GetGridPos();
         tile = GetTile();
         tile.SetAttribute(Attribute.Impassable);
-        potions.Item1 = new string[6];
-        potions.Item1[0] = "Physical";
-        potions.Item1[1] = "Magical";
-        potions.Item2 = 2;
+        inventory = this.GetComponent<Inventory>();
         //animator = this.GetComponent<Animator>();
     }
 
@@ -55,48 +52,11 @@ public class Unit : MonoBehaviour
         tile.DisableHighlight();
     }
 
-    void OnCollisionEnter(Collision collided)
-    {
-        switch (collided.gameObject.name)
-        {
-            case "blue_pot":
-                if (potions.Item2 < potions.Item1.Length)
-                {
-                    potions.Item1[potions.Item2] = "Mana";
-                    potions.Item2 += 1;
-                    Destroy(collided.gameObject);
-                }
-                break;
-            case "red_pot":
-                if (potions.Item2 < potions.Item1.Length)
-                {
-                    potions.Item1[potions.Item2] = "Strength";
-                    potions.Item2 += 1;
-                    Destroy(collided.gameObject);
-                }
-                break;
-            case "green_pot":
-                if (potions.Item2 < potions.Item1.Length)
-                {
-                    potions.Item1[potions.Item2] = "Vitality";
-                    potions.Item2 += 1;
-                    Destroy(collided.gameObject);
-                }
-                break;
-            case "yellow_pot":
-                if (potions.Item2 < potions.Item1.Length)
-                {
-                    potions.Item1[potions.Item2] = "Stamina";
-                    potions.Item2 += 1;
-                    Destroy(collided.gameObject);
-                }
-                break;
-        }
-    }
+    
 
-    public string[] GetInventory()
+    public Inventory GetInventory()
     {
-        return potions.Item1;
+        return inventory;
     }
 
     void InitStats() 
@@ -163,9 +123,10 @@ public class Unit : MonoBehaviour
         }
     }
 
-    public void Use(string item)
+    public void Use(Item item)
     {
-        switch (item)
+        item.Use();
+        /*switch (item)
         {
             case "Mana":
                 currMagic += 4; //Subject to change, depends on how powerful the enemies are/the unit is
@@ -184,7 +145,7 @@ public class Unit : MonoBehaviour
                 currSpeed += 1;
                 currMovement += 1;
                 break;
-        }
+        }*/
     }
 
     // target is the Unit that the current Unit is attacking.
@@ -253,6 +214,45 @@ public class Unit : MonoBehaviour
         currMovement = 0;
         state = UnitState.Acted;
     }
+
+    /*void OnCollisionEnter(Collision collided)
+    {
+        switch (collided.gameObject.name)
+        {
+            case "blue_pot":
+                if (potions.Item2 < potions.Item1.Length)
+                {
+                    potions.Item1[potions.Item2] = "Mana";
+                    potions.Item2 += 1;
+                    Destroy(collided.gameObject);
+                }
+                break;
+            case "red_pot":
+                if (potions.Item2 < potions.Item1.Length)
+                {
+                    potions.Item1[potions.Item2] = "Strength";
+                    potions.Item2 += 1;
+                    Destroy(collided.gameObject);
+                }
+                break;
+            case "green_pot":
+                if (potions.Item2 < potions.Item1.Length)
+                {
+                    potions.Item1[potions.Item2] = "Vitality";
+                    potions.Item2 += 1;
+                    Destroy(collided.gameObject);
+                }
+                break;
+            case "yellow_pot":
+                if (potions.Item2 < potions.Item1.Length)
+                {
+                    potions.Item1[potions.Item2] = "Stamina";
+                    potions.Item2 += 1;
+                    Destroy(collided.gameObject);
+                }
+                break;
+        }
+    }*/
 }
 
 public enum Team
