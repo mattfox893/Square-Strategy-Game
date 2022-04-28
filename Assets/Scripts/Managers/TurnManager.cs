@@ -25,6 +25,7 @@ public class TurnManager : MonoBehaviour
         {
             case TurnState.PlayerTurn:
                 // logic for the start of player turn
+                UnitSelection.Deselect();
                 UnitManager.Instance.EndAll(Team.Enemy);
                 UnitManager.Instance.StartAll(Team.Ally);
                 break;

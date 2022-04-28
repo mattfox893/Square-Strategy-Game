@@ -89,6 +89,11 @@ public class Unit : MonoBehaviour
         return currDefense;
     }
 
+    private int GetSpeed()
+    {
+        return currSpeed;
+    }
+
     public Vector2 GetGridPos()
     {
         return new Vector2(transform.position.x, transform.position.z);
@@ -112,13 +117,34 @@ public class Unit : MonoBehaviour
     // target is the Unit that the current Unit is attacking.
     // isMagic asks if the attack is magical in nature, for the purposes
     // of determining damage.
-    public void Attack(Unit target, bool isMagic)
+    // numAttacks is the number of attacks to make based on the speed calculation.
+    public void Attack(Unit target, bool isMagic, int numAttacks)
     {
         //animator.SetBool("attacked", true);
+
         int damage = isMagic ? currMagic : currStrength;
-        target.Damage(damage, isMagic);
+        
+        for(int i = 0; i < numAttacks; i++)
+        {
+            target.Damage(damage, isMagic);
+        }
+
         //animator.SetBool("attacked", false);
     }
+
+    // The number of attacks to make against target based on the speed calculation.
+    public int NumAttacks(Unit target)
+    {
+        int attacks = 1;
+
+        if (currSpeed >= target.GetSpeed() - 3)
+            attacks = (int) Mathf.Floor((currSpeed - target.GetSpeed()) / 3);
+        /*if (attacks > 1000)
+            attacks = 1000;*/
+
+        return attacks;
+    }
+
 
     // The current Unit will call this to see if they are in range to hit
     // target
