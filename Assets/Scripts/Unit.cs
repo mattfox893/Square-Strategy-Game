@@ -54,9 +54,9 @@ public class Unit : MonoBehaviour
 
     
 
-    public Inventory GetInventory()
+    public List<Item> GetInventory()
     {
-        return inventory;
+        return inventory.GetItems();
     }
 
     void InitStats() 
