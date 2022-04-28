@@ -254,7 +254,7 @@ GameObject:
   - component: {fileID: 7319343547684974323}
   - component: {fileID: 2768017326665646145}
   m_Layer: 0
-  m_Name: potion_red_fab_small
+  m_Name: red_pot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

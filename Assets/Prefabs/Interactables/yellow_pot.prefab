@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 7784623382071476888}
   - component: {fileID: 2223233330606215597}
   m_Layer: 0
-  m_Name: potion_yellow_fab_small
+  m_Name: yellow_pot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

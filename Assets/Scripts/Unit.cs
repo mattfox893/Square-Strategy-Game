@@ -12,6 +12,7 @@ public class Unit : MonoBehaviour
     Vector2 gridPos;
     int currHealth, currSpeed, currStrength, currMagic, currRange, currDefense, currResilience, currMovement;
     //Animator animator;
+    (string[], int) potions;
 
     void Start() 
     {
@@ -20,6 +21,8 @@ public class Unit : MonoBehaviour
         gridPos = GetGridPos();
         tile = GetTile();
         tile.SetAttribute(Attribute.Impassable);
+        potions.Item1 = new string[10];
+        potions.Item2 = 0;
         //animator = this.GetComponent<Animator>();
     }
 
@@ -48,6 +51,45 @@ public class Unit : MonoBehaviour
     {
         tile = GetTile();
         tile.DisableHighlight();
+    }
+
+    void OnCollisionEnter(Collision collided)
+    {
+        switch (collided.gameObject.name)
+        {
+            case "blue_pot":
+                if (potions.Item2 < potions.Item1.Length)
+                {
+                    potions.Item1[potions.Item2] = "Mana";
+                    potions.Item2 += 1;
+                    Destroy(collided.gameObject);
+                }
+                break;
+            case "red_pot":
+                if (potions.Item2 < potions.Item1.Length)
+                {
+                    potions.Item1[potions.Item2] = "Strength";
+                    potions.Item2 += 1;
+                    Destroy(collided.gameObject);
+                }
+                break;
+            case "green_pot":
+                if (potions.Item2 < potions.Item1.Length)
+                {
+                    potions.Item1[potions.Item2] = "Vitality";
+                    potions.Item2 += 1;
+                    Destroy(collided.gameObject);
+                }
+                break;
+            case "yellow_pot":
+                if (potions.Item2 < potions.Item1.Length)
+                {
+                    potions.Item1[potions.Item2] = "Stamina";
+                    potions.Item2 += 1;
+                    Destroy(collided.gameObject);
+                }
+                break;
+        }
     }
 
     void InitStats() 
