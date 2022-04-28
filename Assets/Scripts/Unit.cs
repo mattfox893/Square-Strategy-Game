@@ -21,8 +21,10 @@ public class Unit : MonoBehaviour
         gridPos = GetGridPos();
         tile = GetTile();
         tile.SetAttribute(Attribute.Impassable);
-        potions.Item1 = new string[4];
-        potions.Item2 = 0;
+        potions.Item1 = new string[6];
+        potions.Item1[0] = "Physical";
+        potions.Item1[1] = "Magical";
+        potions.Item2 = 2;
         //animator = this.GetComponent<Animator>();
     }
 
@@ -158,6 +160,30 @@ public class Unit : MonoBehaviour
         if (currHealth <= 0) 
         {
             Death();
+        }
+    }
+
+    public void Use(string item)
+    {
+        switch (item)
+        {
+            case "Mana":
+                currMagic += 4; //Subject to change, depends on how powerful the enemies are/the unit is
+                break;
+            case "Strength":
+                currStrength += 4;
+                break;
+            case "Vitality":
+                if (currHealth <= unitStats.Health - 5)
+                    currHealth += 5;
+                else
+                    currHealth += (unitStats.Health - currHealth);
+                currDefense += 5;
+                break;
+            case "Stamina":
+                currSpeed += 1;
+                currMovement += 1;
+                break;
         }
     }
 
