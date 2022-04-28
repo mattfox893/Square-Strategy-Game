@@ -13,7 +13,7 @@ public class GridManager : MonoBehaviour
 
     void Start()
     {
-        DestroyPreviousGrid();
+        // DestroyPreviousGrid();
         width = startWidth;
         length = startLength;
         Generate();
@@ -21,9 +21,9 @@ public class GridManager : MonoBehaviour
 
     private void DestroyPreviousGrid()
     {
-        for (int x = 0; x < 20; x++)
+        for (int x = width; x < 25; x++)
         {
-            for (int z = 0; z < 20; z++)
+            for (int z = length; z < 25; z++)
             {
                 Tile currTile = GridManager.GetTile(new Vector2(x, z), null);
                 if (currTile != null)

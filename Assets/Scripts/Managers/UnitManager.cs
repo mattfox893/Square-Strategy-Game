@@ -59,4 +59,15 @@ public class UnitManager : MonoBehaviour
             }
         }
     }
+
+    public void EnemyTurn()
+    {
+        foreach (Unit unit in units)
+        {
+            if (unit.team == Team.Enemy)
+            {
+                EnemyBehavior.Instance.Act(unit);
+            }
+        }
+    }
 }

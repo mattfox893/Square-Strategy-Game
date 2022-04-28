@@ -32,8 +32,11 @@ public class TurnManager : MonoBehaviour
             case TurnState.EnemyTurn:
                 // logic for the start of enemy turn
                 UnitSelection.Deselect();
+
                 UnitManager.Instance.EndAll(Team.Ally);
                 UnitManager.Instance.StartAll(Team.Enemy);
+                UnitManager.Instance.EnemyTurn();
+                UnitManager.Instance.CheckTeamStatus(Team.Enemy);
                 break;
             default:
                 Debug.Log($"ERROR! TurnManager.ChangeState() was called with an invalid argument: {newState}");

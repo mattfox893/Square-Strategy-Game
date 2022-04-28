@@ -50,6 +50,10 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
+
+        //debugging...
+        if (Input.GetKeyDown(KeyCode.Space) && TurnManager.Instance.turn == TurnState.PlayerTurn)
+            TurnManager.Instance.ChangeState(TurnState.EnemyTurn);
     }
 
     IEnumerator Move(string dir)
@@ -101,8 +105,11 @@ public class PlayerMovement : MonoBehaviour
                 yield return null;
             }
 
-            selected.transform.position = target;
         }
+
+        selected.transform.position = 
+            new Vector3(Mathf.Round(selected.transform.position.x), selected.transform.position.y, Mathf.Round(selected.transform.position.z));
+
         isMoving = false;
     }
 }
