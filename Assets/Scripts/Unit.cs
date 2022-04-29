@@ -54,9 +54,9 @@ public class Unit : MonoBehaviour
 
     
 
-    public List<Item> GetInventory()
+    public Inventory GetInventory()
     {
-        return inventory.GetItems();
+        return inventory;
     }
 
     void InitStats() 
@@ -125,72 +125,56 @@ public class Unit : MonoBehaviour
 
     public void Use(Item item)
     {
-        string name = inventory.UseItem(item);
-        if (name != null)
-        {
-            switch (name)
-            {
-                case "Mana":
-                    Mana();
-                    break;
-                case "Vitality":
-                    Heal();
-                    break;
-                case "Stamina":
-                    Fast();
-                    break;
-                case "Strength":
-                    Lift();
-                    break;
-                case "Physical":
-                    Unit physTar = UnitSelection.GetSelected();
-                    Attack(physTar, false, NumAttacks(physTar));
-                    break;
-                case "Magical":
-                    Unit magTar = UnitSelection.GetSelected();
-                    Attack(magTar, true, NumAttacks(magTar));
-                    break;
-            }
-        }
-
+        inventory.UseItem(item);
     }
 
-    void Lift()
+    public void AddStrength(int amt)
     {
-        currStrength += 3; //Subject to change, not sure how strong enemies are
+        currStrength += amt;
     }
 
-    void Fast()
+    public void AddSpeed(int amt)
     {
-        currSpeed += 3; //Subject to change, not sure how strong enemies are
+        currSpeed += amt;
     }
 
-    void Mana()
+    public void AddMagic(int amt)
     {
-        currMagic += 3; //Subject to change, not sure how strong enemies are
+        currMagic += amt; //Subject to change, not sure how strong enemies are
     }
-    void Heal()
+
+    public void AddDefense(int amt)
+    {
+        currDefense += amt;
+    }
+
+    public void Heal(int amt)
     {
         if (currHealth <= unitStats.Health - 5)
         {
-            currHealth += 5;
+            currHealth += amt;
         }
         else
         {
             currHealth = unitStats.Health;
         }
-        currDefense += 4; //Subject to change, not sure how strong enemies are
     }
 
     // target is the Unit that the current Unit is attacking.
-    // isMagic asks if the attack is magical in nature, for the purposes
-    // of determining damage.
-    // numAttacks is the number of attacks to make based on the speed calculation.
-    public void Attack(Unit target, bool isMagic, int numAttacks)
+    public void Attack(Unit target)
     {
         //animator.SetBool("attacked", true);
+        bool isMagic = false;
+        int damage = 0;
+        int numAttacks = NumAttacks(target);
 
-        int damage = isMagic ? currMagic : currStrength;
+        if (inventory.HasEquipped())
+        {
+            isMagic = inventory.GetEquippedType();
+            damage += inventory.GetEquippedDamage();
+        }
+
+        damage += isMagic ? currMagic : currStrength;
         
         for(int i = 0; i < numAttacks; i++)
         {

@@ -54,11 +54,3 @@ public class Potion : Interactable
     }*/
 
 }
-
-public enum PotionType
-{
-    Mana = 0,
-    Strength = 1,
-    Vitality = 2,
-    Stamina = 3
-}

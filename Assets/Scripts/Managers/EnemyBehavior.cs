@@ -46,8 +46,8 @@ public class EnemyBehavior : MonoBehaviour
             // if there is an "Ally" within range to attack,
             if (target.team == Team.Ally && unit.inRange(target))
             {
-                // attack the target, dont forget to eventually check if the unit's weapon is magical
-                unit.Attack(target, false, unit.NumAttacks(target));
+                // attack the target
+                unit.Attack(target);
                 return true;
             }
         }
