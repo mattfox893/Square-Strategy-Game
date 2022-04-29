@@ -56,11 +56,10 @@ public class PlayerMovement : MonoBehaviour
             TurnManager.Instance.ChangeState(TurnState.EnemyTurn);*/
     }
 
-    IEnumerator Move(string dir)
+    // convert a given string into a vector3 direction
+    Vector3 ReturnStringAsDirection(string dir)
     {
-        isMoving = true;
-        Vector3 direction = new Vector3(0, 0, 0);
-        int moveCost = 0;
+        Vector3 direction;
 
         switch (dir)
         {
@@ -78,9 +77,18 @@ public class PlayerMovement : MonoBehaviour
                 break;
             default:
                 Debug.Log($"ERROR! Incorrect Movement Call: {dir}");
+                direction = new Vector3(0, 0, 0);
                 break;
         }
 
+        return direction;
+    }
+
+    IEnumerator Move(string dir)
+    {
+        isMoving = true;
+        Vector3 direction = ReturnStringAsDirection(dir);
+        int moveCost = 0;
         target = selected.transform.position + direction;
         start = selected.transform.position;
         startTile = GridManager.GetTile(new Vector2(start.x, start.z), startTile);

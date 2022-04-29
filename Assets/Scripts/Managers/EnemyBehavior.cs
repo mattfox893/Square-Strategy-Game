@@ -16,22 +16,19 @@ public class EnemyBehavior : MonoBehaviour
 
     public void Act(Unit unit)
     {
-        // if no units in attack range, move towards closest unit
-        /*foreach (Unit target in UnitManager.Instance.units)
+        if (!AttackEnemyWithinRange(unit))
         {
-            if (unit.inRange(target))
+            while (unit.GetMovement() > 0)
             {
-
+                StartCoroutine(Move(unit, DetermineClosest(unit)));
             }
+        }
 
-            Move(unit, "up");
-        }*/
-        StartCoroutine(Move(unit, "up"));
         unit.state = UnitState.Acted;
     }
 
-    // find the closest unit
-    Unit DetermineClosest(Unit unit)
+    // find the closest unit, return a string of their relative direction
+    string DetermineClosest(Unit unit)
     {
         foreach (Unit target in UnitManager.Instance.units)
         {
@@ -41,15 +38,36 @@ public class EnemyBehavior : MonoBehaviour
         return null;
     }
 
-    IEnumerator Move(Unit unit, string dir)
-    {            
-        isMoving = true;
-        Vector3 direction = new Vector3(0, 0, 0);
-        int moveCost = 0;
-        Vector3 target;
-        Vector3 start;
-        Tile startTile;
-        Tile targetTile;
+    // try to attack an enemy within range of unit, return true if successful and false otherwise
+    bool AttackEnemyWithinRange(Unit unit)
+    {
+        foreach (Unit target in UnitManager.Instance.units)
+        {
+            // if there is an "Ally" within range to attack,
+            if (target.team == Team.Ally && unit.inRange(target))
+            {
+                // attack the target, dont forget to eventually check if the unit's weapon is magical
+                unit.Attack(target, false, unit.NumAttacks(target));
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // if moving in dir would clash with an immovable tile,
+    bool CheckMoveValid(Unit unit, string dir)
+    {
+        Vector3 direction = ReturnStringAsDirection(dir);
+        Vector3 target = unit.transform.position + direction;
+        Tile targetTile = GridManager.GetTile(new Vector2(target.x, target.z), null);
+
+        return (targetTile.GetAttribute() != Attribute.Impassable);
+    }
+
+    // convert a given string into a vector3 direction
+    Vector3 ReturnStringAsDirection(string dir)
+    {
+        Vector3 direction;
 
         switch (dir)
         {
@@ -67,13 +85,22 @@ public class EnemyBehavior : MonoBehaviour
                 break;
             default:
                 Debug.Log($"ERROR! Incorrect Movement Call: {dir}");
+                direction = new Vector3(0, 0, 0);
                 break;
         }
 
-        target = unit.transform.position + direction;
-        start = unit.transform.position;
-        startTile = GridManager.GetTile(new Vector2(start.x, start.z), null);
-        targetTile = GridManager.GetTile(new Vector2(target.x, target.z), null);
+        return direction;
+    }
+
+    IEnumerator Move(Unit unit, string dir)
+    {            
+        isMoving = true;
+        Vector3 direction = ReturnStringAsDirection(dir);
+        int moveCost = 0;
+        Vector3 target = unit.transform.position + direction;
+        Vector3 start = unit.transform.position;
+        Tile startTile = GridManager.GetTile(new Vector2(start.x, start.z), null);
+        Tile targetTile = GridManager.GetTile(new Vector2(target.x, target.z), null);
 
         if (targetTile.GetAttribute() != Attribute.Impassable)
         {
