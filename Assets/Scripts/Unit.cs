@@ -125,27 +125,61 @@ public class Unit : MonoBehaviour
 
     public void Use(Item item)
     {
-        item.Use();
-        /*switch (item)
+        string name = inventory.UseItem(item);
+        if (name != null)
         {
-            case "Mana":
-                currMagic += 4; //Subject to change, depends on how powerful the enemies are/the unit is
-                break;
-            case "Strength":
-                currStrength += 4;
-                break;
-            case "Vitality":
-                if (currHealth <= unitStats.Health - 5)
-                    currHealth += 5;
-                else
-                    currHealth += (unitStats.Health - currHealth);
-                currDefense += 5;
-                break;
-            case "Stamina":
-                currSpeed += 1;
-                currMovement += 1;
-                break;
-        }*/
+            switch (name)
+            {
+                case "Mana":
+                    Mana();
+                    break;
+                case "Vitality":
+                    Heal();
+                    break;
+                case "Stamina":
+                    Fast();
+                    break;
+                case "Strength":
+                    Lift();
+                    break;
+                case "Physical":
+                    Unit physTar = UnitSelection.GetSelected();
+                    Attack(physTar, false, NumAttacks(physTar));
+                    break;
+                case "Magical":
+                    Unit magTar = UnitSelection.GetSelected();
+                    Attack(magTar, true, NumAttacks(magTar));
+                    break;
+            }
+        }
+
+    }
+
+    void Lift()
+    {
+        currStrength += 3; //Subject to change, not sure how strong enemies are
+    }
+
+    void Fast()
+    {
+        currSpeed += 3; //Subject to change, not sure how strong enemies are
+    }
+
+    void Mana()
+    {
+        currMagic += 3; //Subject to change, not sure how strong enemies are
+    }
+    void Heal()
+    {
+        if (currHealth <= unitStats.Health - 5)
+        {
+            currHealth += 5;
+        }
+        else
+        {
+            currHealth = unitStats.Health;
+        }
+        currDefense += 4; //Subject to change, not sure how strong enemies are
     }
 
     // target is the Unit that the current Unit is attacking.
@@ -215,6 +249,28 @@ public class Unit : MonoBehaviour
         state = UnitState.Acted;
     }
 
+
+    
+    /*switch (item)
+       {
+           case "Mana":
+               currMagic += 4; //Subject to change, depends on how powerful the enemies are/the unit is
+               break;
+           case "Strength":
+               currStrength += 4;
+               break;
+           case "Vitality":
+               if (currHealth <= unitStats.Health - 5)
+                   currHealth += 5;
+               else
+                   currHealth += (unitStats.Health - currHealth);
+               currDefense += 5;
+               break;
+           case "Stamina":
+               currSpeed += 1;
+               currMovement += 1;
+               break;
+       }*/
     /*void OnCollisionEnter(Collision collided)
     {
         switch (collided.gameObject.name)

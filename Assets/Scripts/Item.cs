@@ -20,9 +20,11 @@ public class Item
         this.type = item.type;
     }
 
-    public void Use()
+    /*public string Use()
     {
-    }
+        string str = this.name;
+
+    }*/
 }
 
 public enum ItemType
