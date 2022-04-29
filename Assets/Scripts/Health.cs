@@ -5,15 +5,17 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    public float health;
-    public float maxHealth;
+    float health;
+    float maxHealth;
 
     public GameObject healthUI;
     public Slider healthSlider;
+    public Unit unit;
 
     // Start is called before the first frame update
     void Start()
     {
+        maxHealth = unit.unitStats.Health;
         health = maxHealth;
         healthSlider.value = SliderHealth();
     }
@@ -21,12 +23,18 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(maxHealth);
+
+        Debug.Log(health);
+        health = unit.GetHealth();
         healthSlider.value = SliderHealth();
         if (health <= 0)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            //If you want to kill the game object here you can.
         }
 
+        //No overflow health
         health = Mathf.Min(health, maxHealth);
     }
 

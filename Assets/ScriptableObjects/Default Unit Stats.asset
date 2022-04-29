@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a005810a110df4f860f3e0c4cf4202, type: 3}
   m_Name: Default Unit Stats
   m_EditorClassIdentifier: 
-  Health: 0
+  Health: 100
   Speed: 0
   Strength: 0
   Magic: 0

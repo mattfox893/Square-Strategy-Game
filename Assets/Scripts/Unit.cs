@@ -14,7 +14,7 @@ public class Unit : MonoBehaviour
     //Animator animator;
     public Inventory inventory;
 
-    void Start() 
+    void Awake() 
     {
         InitStats();
         state = UnitState.NotActed;
