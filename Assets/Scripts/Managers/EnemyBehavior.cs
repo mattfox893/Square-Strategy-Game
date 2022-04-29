@@ -76,6 +76,7 @@ public class EnemyBehavior : MonoBehaviour
                 // attack the target
                 unit.Attack(target);
                 Debug.Log($"Attacked {target}!");
+                Debug.Log($"Target's new health: {target.GetHealth()}");
                 return true;
             }
         }

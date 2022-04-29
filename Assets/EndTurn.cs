@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class EndTurn : MonoBehaviour
 {
-    public TurnManager turnManager;
     public Button endTurn;
 
     // Start is called before the first frame update
@@ -17,6 +16,10 @@ public class EndTurn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        endTurn.onClick.AddListener(delegate { turnManager.ChangeState(TurnState.EnemyTurn); });
+        if (TurnManager.Instance.turn == TurnState.PlayerTurn)
+        {
+            endTurn.onClick.AddListener(delegate { TurnManager.Instance.ChangeState(TurnState.EnemyTurn); });
+        }
+        
     }
 }

@@ -23,16 +23,11 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(maxHealth);
-
-        Debug.Log(health);
+        //Debug.Log(maxHealth);
+        //Debug.Log(health);
+        
         health = unit.GetHealth();
         healthSlider.value = SliderHealth();
-        if (health <= 0)
-        {
-            //Destroy(gameObject);
-            //If you want to kill the game object here you can.
-        }
 
         //No overflow health
         health = Mathf.Min(health, maxHealth);

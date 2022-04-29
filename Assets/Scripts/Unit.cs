@@ -167,6 +167,7 @@ public class Unit : MonoBehaviour
         bool isMagic = false;
         int damage = 0;
         int numAttacks = NumAttacks(target);
+        Debug.Log($"num attacks: {numAttacks}");
 
         if (inventory.HasEquipped())
         {
@@ -189,7 +190,7 @@ public class Unit : MonoBehaviour
     {
         int attacks = 1;
 
-        if (currSpeed >= target.GetSpeed() - 3)
+        if (currSpeed >= target.GetSpeed() + 3)
             attacks = (int) Mathf.Floor((currSpeed - target.GetSpeed()) / 3);
         /*if (attacks > 1000)
             attacks = 1000;*/
