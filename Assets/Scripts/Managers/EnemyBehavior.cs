@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyBehavior : MonoBehaviour
 {
     bool isMoving;
+    Unit unit;
+    string dir;
     
     [SerializeField] float moveSpeed = 4f;
     public static EnemyBehavior Instance;
@@ -18,9 +20,11 @@ public class EnemyBehavior : MonoBehaviour
     {
         if (!AttackEnemyWithinRange(unit))
         {
-            while (unit.GetMovement() > 0)
+
+            if (unit.GetMovement() > 0 && CheckMoveValid(unit, DetermineClosest(unit)))
             {
                 StartCoroutine(Move(unit, DetermineClosest(unit)));
+                AttackEnemyWithinRange(unit);
             }
         }
 
@@ -30,12 +34,35 @@ public class EnemyBehavior : MonoBehaviour
     // find the closest unit, return a string of their relative direction
     string DetermineClosest(Unit unit)
     {
+        Vector2 unitPos = unit.GetGridPos(), targetPos;
+        string dir = "";
+
         foreach (Unit target in UnitManager.Instance.units)
         {
+            if (target.team == Team.Ally)
+            {
+                targetPos = target.GetGridPos();
 
+                if (targetPos.x > unitPos.x)
+                {
+                    dir = "right";
+                }
+                else if (targetPos.x < unitPos.x)
+                {
+                    dir = "left";
+                }
+                else if (targetPos.y > unitPos.y)
+                {
+                    dir = "up";
+                }
+                else if (targetPos.y < unitPos.y)
+                {
+                    dir = "down";
+                }
+            }
         }
 
-        return null;
+        return dir;
     }
 
     // try to attack an enemy within range of unit, return true if successful and false otherwise
@@ -48,6 +75,7 @@ public class EnemyBehavior : MonoBehaviour
             {
                 // attack the target
                 unit.Attack(target);
+                Debug.Log($"Attacked {target}!");
                 return true;
             }
         }
@@ -61,7 +89,7 @@ public class EnemyBehavior : MonoBehaviour
         Vector3 target = unit.transform.position + direction;
         Tile targetTile = GridManager.GetTile(new Vector2(target.x, target.z), null);
 
-        return (targetTile.GetAttribute() != Attribute.Impassable);
+        return (targetTile != null && targetTile.GetAttribute() != Attribute.Impassable);
     }
 
     // convert a given string into a vector3 direction
@@ -92,8 +120,9 @@ public class EnemyBehavior : MonoBehaviour
         return direction;
     }
 
+
     IEnumerator Move(Unit unit, string dir)
-    {            
+    {
         isMoving = true;
         Vector3 direction = ReturnStringAsDirection(dir);
         int moveCost = 0;
@@ -102,7 +131,7 @@ public class EnemyBehavior : MonoBehaviour
         Tile startTile = GridManager.GetTile(new Vector2(start.x, start.z), null);
         Tile targetTile = GridManager.GetTile(new Vector2(target.x, target.z), null);
 
-        if (targetTile.GetAttribute() != Attribute.Impassable)
+        if (targetTile != null && targetTile.GetAttribute() != Attribute.Impassable)
         {
             if (startTile.GetAttribute() == Attribute.Slow)
             {
@@ -124,5 +153,13 @@ public class EnemyBehavior : MonoBehaviour
 
         unit.transform.position = new Vector3(Mathf.Round(unit.transform.position.x), unit.transform.position.y, Mathf.Round(unit.transform.position.z));
         isMoving = false;
+    }
+
+
+    IEnumerator Wait(float t)
+    {
+        Debug.Log("waiting...");
+        yield return new WaitForSeconds(t);
+        Debug.Log("done waiting.");
     }
 }

@@ -94,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
         startTile = GridManager.GetTile(new Vector2(start.x, start.z), startTile);
         targetTile = GridManager.GetTile(new Vector2(target.x, target.z), startTile);
 
-        if (targetTile.GetAttribute() != Attribute.Impassable)
+        if (targetTile != null && targetTile.GetAttribute() != Attribute.Impassable)
         {
             if (startTile.GetAttribute() == Attribute.Slow)
             {
