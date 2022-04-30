@@ -163,7 +163,7 @@ public class Unit : MonoBehaviour
     // target is the Unit that the current Unit is attacking.
     public void Attack(Unit target)
     {
-        //animator.SetBool("attacked", true);
+        
         bool isMagic = false;
         int damage = 0;
         int numAttacks = NumAttacks(target);
@@ -174,7 +174,15 @@ public class Unit : MonoBehaviour
             isMagic = inventory.GetEquippedType();
             damage += inventory.GetEquippedDamage();
         }
-
+        /*
+         * if (isMagic){
+         *  animator.SetBool("Mag", true);
+         * }
+         * else
+         * {
+         *  animator.SetBool("Phys", true);
+         * }
+         */
         damage += isMagic ? currMagic : currStrength;
         
         for(int i = 0; i < numAttacks; i++)
@@ -182,7 +190,15 @@ public class Unit : MonoBehaviour
             target.Damage(damage, isMagic);
         }
 
-        //animator.SetBool("attacked", false);
+        /*
+         * if (isMagic){
+         *  animator.SetBool("Mag", false);
+         * }
+         * else
+         * {
+         *  animator.SetBool("Phys", false);
+         * }
+         */
     }
 
     // The number of attacks to make against target based on the speed calculation.

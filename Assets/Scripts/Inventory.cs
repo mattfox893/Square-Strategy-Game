@@ -28,8 +28,8 @@ public class Inventory : MonoBehaviour
         if (item == null)
             return false;
 
-        /*if (item.name == "Physical" || item.name == "Magical")
-            return true;*/
+        if (item.name == "Physical" || item.name == "Magical")
+            return true;
 
         return items.Remove(item);
     }
