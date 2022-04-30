@@ -10,13 +10,17 @@ public class EndTurn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        endTurn.onClick.AddListener(delegate { TurnManager.Instance.ChangeState(TurnState.EnemyTurn); });
+        Button btn = endTurn.GetComponent<Button>();
+        btn.onClick.AddListener(TaskOnClick);
+        //endTurn.onClick.AddListener(delegate { TurnManager.Instance.ChangeState(TurnState.EnemyTurn); });
     }
 
     // Update is called once per frame
-    void Update()
+    void TaskOnClick()
     {
-
-        
+        if (TurnManager.Instance.turn == TurnState.PlayerTurn)
+        {
+            TurnManager.Instance.ChangeState(TurnState.EnemyTurn);
+        }
     }
 }
