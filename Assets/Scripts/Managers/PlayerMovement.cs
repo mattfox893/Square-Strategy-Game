@@ -20,10 +20,10 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-        if (UnitSelection.GetSelected() != null)
+        if (UnitSelection.Instance.GetSelected() != null)
         {
             // set the local selected to the static selected Unit
-            selected = UnitSelection.GetSelected();
+            selected = UnitSelection.Instance.GetSelected();
 
             // if the selected Unit is of team Ally and it is the player's turn,
             if (selected.team == Team.Ally && TurnManager.Instance.turn == TurnState.PlayerTurn)

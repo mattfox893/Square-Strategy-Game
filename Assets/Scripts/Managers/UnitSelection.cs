@@ -4,15 +4,31 @@ using UnityEngine;
 
 public class UnitSelection : MonoBehaviour
 {
-    public static Unit selected;
-    public static Tile selectedTile;
+    public Unit selected;
+    public Tile selectedTile;
+    public GameObject highlight;
+    public static UnitSelection Instance;
+
+    private void Awake()
+    {
+        Instance = this;    
+    }
 
     void Start() 
     {
         Deselect();
     }
 
-    public static void SetSelected(Unit toSelect)
+    private void Update()
+    {
+        if (highlight != null && selected != null)
+        {
+            highlight.transform.position = selected.transform.position;
+        }
+        
+    }
+
+    public void SetSelected(Unit toSelect)
     {
         if (toSelect == null)
             return;
@@ -41,15 +57,20 @@ public class UnitSelection : MonoBehaviour
 
             selected = toSelect;
         }
+
+        highlight.SetActive(true);
+        highlight.transform.position += new Vector3(0, 1, 0);
+        
     }
 
-    public static void Deselect()
+    public void Deselect()
     {
         selected = null;
         selectedTile = null;
+        highlight.SetActive(false);
     }
 
-    public static Unit GetSelected() 
+    public Unit GetSelected() 
     {
         return selected;
     }

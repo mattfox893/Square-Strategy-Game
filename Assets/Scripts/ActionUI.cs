@@ -19,7 +19,7 @@ public class ActionUI : MonoBehaviour
 
     private void Awake()
     {
-        selected = UnitSelection.GetSelected();
+        selected = UnitSelection.Instance.GetSelected();
     }
 
     // For now Action only removes the bar. Other actions can be added in later

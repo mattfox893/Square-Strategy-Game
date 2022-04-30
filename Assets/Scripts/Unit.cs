@@ -29,7 +29,7 @@ public class Unit : MonoBehaviour
     {
         gridPos = GetGridPos();
         tile = GetTile();
-        if (UnitSelection.selected != this)
+        if (UnitSelection.Instance.selected != this)
         {
             tile.SetAttribute(Attribute.Impassable);
         }
@@ -37,7 +37,7 @@ public class Unit : MonoBehaviour
 
     void OnMouseDown() 
     {
-        UnitSelection.SetSelected(this);
+        UnitSelection.Instance.SetSelected(this);
     }
 
     void OnMouseEnter() 
