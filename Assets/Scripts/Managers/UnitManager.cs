@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class UnitManager : MonoBehaviour
 {
-    public List<Unit> units;
+    public List<Unit> units, allies, enemies;
+
     public static UnitManager Instance;
 
     private void Awake()
@@ -17,6 +18,16 @@ public class UnitManager : MonoBehaviour
     private void Start()
     {
         units = FindObjectsOfType<Unit>().ToList();
+        foreach (Unit unit in units)
+        {
+            if (unit.team == Team.Ally)
+            {
+                allies.Add(unit);
+            } else if (unit.team == Team.Enemy)
+            {
+                enemies.Add(unit);
+            }
+        }
     }
 
     // Check if all members of team have acted
@@ -62,12 +73,9 @@ public class UnitManager : MonoBehaviour
 
     public void EnemyTurn()
     {
-        foreach (Unit unit in units)
+        foreach (Unit unit in enemies)
         {
-            if (unit.team == Team.Enemy)
-            {
-                EnemyBehavior.Instance.Act(unit);
-            }
+            EnemyBehavior.Instance.Act(unit);
         }
     }
 }

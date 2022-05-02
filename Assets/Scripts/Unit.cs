@@ -231,6 +231,17 @@ public class Unit : MonoBehaviour
         //animator.SetBool("hasDied", true);
         tile = GetTile();
         tile.SetAttribute(Attribute.Normal);
+        UnitManager.Instance.units.Remove(this);
+
+        if (team == Team.Ally)
+        {
+            UnitManager.Instance.allies.Remove(this);
+        } 
+        else if (team == Team.Enemy)
+        {
+            UnitManager.Instance.enemies.Remove(this);
+        }
+
         Destroy(this.gameObject);
     }
 

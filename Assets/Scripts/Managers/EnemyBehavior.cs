@@ -5,9 +5,11 @@ using UnityEngine;
 public class EnemyBehavior : MonoBehaviour
 {
     bool isMoving;
-    Unit unit;
-    string dir;
-    
+    Unit currUnit;
+    Vector3 direction, target, start;
+    Tile startTile;
+    float journeyDist, timeElapsed;
+
     [SerializeField] float moveSpeed = 4f;
     public static EnemyBehavior Instance;
 
@@ -16,19 +18,58 @@ public class EnemyBehavior : MonoBehaviour
         Instance = this;
     }
 
+    private void Update()
+    {
+        if (isMoving && currUnit != null)
+        {
+            timeElapsed += Time.deltaTime;
+            Move(currUnit, DetermineClosest(currUnit));
+        } else if (!isMoving && currUnit != null)
+        {
+            Debug.Log("not movig");
+        }
+    }
+
     public void Act(Unit unit)
     {
         if (!AttackEnemyWithinRange(unit))
         {
-
-            if (unit.GetMovement() > 0 && CheckMoveValid(unit, DetermineClosest(unit)))
+            for (int i = unit.GetMovement(); i > 0; i--)
             {
-                StartCoroutine(Move(unit, DetermineClosest(unit)));
-                AttackEnemyWithinRange(unit);
+                if (!isMoving && CheckMoveValid(unit, DetermineClosest(unit)))
+                {
+                    //StartCoroutine(Move(unit, DetermineClosest(unit)));
+                    SetMoving(unit, DetermineClosest(unit));
+                    currUnit = unit;
+                    AttackEnemyWithinRange(unit);
+                    Debug.Log($"set moving. Moving: {isMoving}. unit: {unit.name}");
+                }
             }
         }
 
+        //Move(unit, "up");
+        //Move(unit, "left");
+
         unit.state = UnitState.Acted;
+    }
+
+    void SetMoving(Unit unit, string dir)
+    {
+        direction = ReturnStringAsDirection(dir);
+        int moveCost = 1;
+        target = unit.transform.position + direction;
+        start = unit.transform.position;
+        startTile = GridManager.GetTile(new Vector2(start.x, start.z), null);
+        journeyDist = 0.1f * moveSpeed;
+
+        if (startTile.GetAttribute() == Attribute.Slow)
+        {
+            moveCost = 2;
+        }
+
+        unit.MoveUnit(moveCost);
+
+        isMoving = true;
     }
 
     // find the closest unit, return a string of their relative direction
@@ -43,19 +84,19 @@ public class EnemyBehavior : MonoBehaviour
             {
                 targetPos = target.GetGridPos();
 
-                if (targetPos.x > unitPos.x)
+                if (targetPos.x > unitPos.x && CheckMoveValid(unit, "right"))
                 {
                     dir = "right";
                 }
-                else if (targetPos.x < unitPos.x)
+                else if (targetPos.x < unitPos.x && CheckMoveValid(unit, "left"))
                 {
                     dir = "left";
                 }
-                else if (targetPos.y > unitPos.y)
+                else if (targetPos.y > unitPos.y && CheckMoveValid(unit, "up"))
                 {
                     dir = "up";
                 }
-                else if (targetPos.y < unitPos.y)
+                else if (targetPos.y < unitPos.y && CheckMoveValid(unit, "down"))
                 {
                     dir = "down";
                 }
@@ -121,7 +162,39 @@ public class EnemyBehavior : MonoBehaviour
         return direction;
     }
 
+    void Move(Unit unit, string dir)
+    {
+        /*Vector3 direction = ReturnStringAsDirection(dir);
+        int moveCost = 0;
+        Vector3 target = unit.transform.position + direction;
+        Vector3 start = unit.transform.position;
+        Tile startTile = GridManager.GetTile(new Vector2(start.x, start.z), null);
+        Tile targetTile = GridManager.GetTile(new Vector2(target.x, target.z), null);*/
 
+        float distLeft = Vector3.Distance(start, unit.transform.position);
+
+        if (timeElapsed <= journeyDist)
+        {
+            // unit.transform.position += (target - start) * moveSpeed * Time.deltaTime;
+            Debug.Log($"moving enemy... {timeElapsed} / {journeyDist}");
+            unit.transform.position = Vector3.Lerp(start, target, timeElapsed / journeyDist);
+        } else
+        {
+            Debug.Log("timeElapsed > journeyDist");
+        }
+
+        if (Vector3.Distance(target, unit.transform.position) <= 0.1f)
+        {
+            Debug.Log("move completed");
+            unit.transform.position = new Vector3(Mathf.Round(unit.transform.position.x), unit.transform.position.y, Mathf.Round(unit.transform.position.z));
+            isMoving = false;
+            currUnit = null;
+            timeElapsed = 0f;
+        }
+        //unit.transform.position = new Vector3(Mathf.Round(unit.transform.position.x), unit.transform.position.y, Mathf.Round(unit.transform.position.z));
+    }
+
+/*
     IEnumerator Move(Unit unit, string dir)
     {
         isMoving = true;
@@ -155,7 +228,7 @@ public class EnemyBehavior : MonoBehaviour
         unit.transform.position = new Vector3(Mathf.Round(unit.transform.position.x), unit.transform.position.y, Mathf.Round(unit.transform.position.z));
         isMoving = false;
     }
-
+*/
 
     IEnumerator Wait(float t)
     {
