@@ -266,6 +266,7 @@ public class Unit : MonoBehaviour
         tile.SetAttribute(Attribute.Impassable);
         currMovement = 0;
         state = UnitState.Acted;
+        UnitManager.Instance.CheckTeamStatus(Team.Ally);
     }
 }
 

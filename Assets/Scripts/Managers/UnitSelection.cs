@@ -44,6 +44,8 @@ public class UnitSelection : MonoBehaviour
             // on selection, do this
             selectedTile.SetAttribute(Attribute.Normal);
             selected = toSelect;
+            highlight.SetActive(true);
+            highlight.transform.position += new Vector3(0, 1, 0);
         }
 
         // if the Unit selected is of Team Enemy,
@@ -58,12 +60,10 @@ public class UnitSelection : MonoBehaviour
                     selected.EndTurn();
                 }
             }
-            selected = toSelect;
 
         }
 
-        highlight.SetActive(true);
-        highlight.transform.position += new Vector3(0, 1, 0);
+        
         
     }
 

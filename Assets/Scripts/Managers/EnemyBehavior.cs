@@ -171,6 +171,8 @@ public class EnemyBehavior : MonoBehaviour
         Vector3 start = unit.transform.position;
         Tile startTile = GridManager.GetTile(new Vector2(start.x, start.z), null);
 
+        startTile.SetAttribute(Attribute.Normal);
+
         if (startTile.GetAttribute() == Attribute.Slow)
         {
             moveCost = 2;
@@ -194,6 +196,9 @@ public class EnemyBehavior : MonoBehaviour
         {
             unit.transform.position = new Vector3(Mathf.Round(unit.transform.position.x), unit.transform.position.y, Mathf.Round(unit.transform.position.z));
         }
+
+        Tile currTile = GridManager.GetTile(new Vector2(unit.transform.position.x, unit.transform.position.z), startTile);
+        currTile.SetAttribute(Attribute.Impassable);
     }
 
 /*

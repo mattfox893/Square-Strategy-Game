@@ -30,7 +30,7 @@ public class UnitManager : MonoBehaviour
         }
     }
 
-    // Check if all members of team have acted
+    // Check if all members of team have acted, if so change turn
     public void CheckTeamStatus(Team team)
     {
         foreach (Unit unit in units)

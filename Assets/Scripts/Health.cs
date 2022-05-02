@@ -27,7 +27,7 @@ public class Health : MonoBehaviour
         //Debug.Log(health);
 
         health = unit.GetHealth();
-        Debug.Log(healthSlider);
+        //Debug.Log(healthSlider);
         healthSlider.value = SliderHealth();
         
         //No overflow health
