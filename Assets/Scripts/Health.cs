@@ -25,10 +25,11 @@ public class Health : MonoBehaviour
     {
         //Debug.Log(maxHealth);
         //Debug.Log(health);
-        
-        health = unit.GetHealth();
-        healthSlider.value = SliderHealth();
 
+        health = unit.GetHealth();
+        Debug.Log(healthSlider);
+        healthSlider.value = SliderHealth();
+        
         //No overflow health
         health = Mathf.Min(health, maxHealth);
     }

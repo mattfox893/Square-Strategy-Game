@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 730698340085086266}
   - component: {fileID: 7725421709241869282}
   - component: {fileID: 6534502556907209049}
-  - component: {fileID: 4884103758971245045}
   - component: {fileID: 3268358854775525333}
   - component: {fileID: 8431081907259106782}
   - component: {fileID: 4072338192888080071}
@@ -70,21 +69,6 @@ MonoBehaviour:
   state: 0
   animator: {fileID: 0}
   inventory: {fileID: 0}
---- !u!114 &4884103758971245045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 101373770766049920}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ec75f4b43bd76e4199ce09f49cfe442, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthUI: {fileID: 0}
-  healthSlider: {fileID: 0}
-  unit: {fileID: 6534502556907209049}
 --- !u!114 &3268358854775525333
 MonoBehaviour:
   m_ObjectHideFlags: 0
