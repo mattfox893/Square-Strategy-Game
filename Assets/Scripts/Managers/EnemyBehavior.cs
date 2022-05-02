@@ -24,9 +24,6 @@ public class EnemyBehavior : MonoBehaviour
         {
             timeElapsed += Time.deltaTime;
             Move(currUnit, DetermineClosest(currUnit));
-        } else if (!isMoving && currUnit != null)
-        {
-            Debug.Log("not movig");
         }
     }
 
@@ -42,7 +39,6 @@ public class EnemyBehavior : MonoBehaviour
                     SetMoving(unit, DetermineClosest(unit));
                     currUnit = unit;
                     AttackEnemyWithinRange(unit);
-                    Debug.Log($"set moving. Moving: {isMoving}. unit: {unit.name}");
                 }
             }
         }
@@ -116,8 +112,6 @@ public class EnemyBehavior : MonoBehaviour
             {
                 // attack the target
                 unit.Attack(target);
-                Debug.Log($"Attacked {target}!");
-                Debug.Log($"Target's new health: {target.GetHealth()}");
                 return true;
             }
         }
@@ -171,21 +165,14 @@ public class EnemyBehavior : MonoBehaviour
         Tile startTile = GridManager.GetTile(new Vector2(start.x, start.z), null);
         Tile targetTile = GridManager.GetTile(new Vector2(target.x, target.z), null);*/
 
-        float distLeft = Vector3.Distance(start, unit.transform.position);
-
         if (timeElapsed <= journeyDist)
         {
             // unit.transform.position += (target - start) * moveSpeed * Time.deltaTime;
-            Debug.Log($"moving enemy... {timeElapsed} / {journeyDist}");
             unit.transform.position = Vector3.Lerp(start, target, timeElapsed / journeyDist);
-        } else
-        {
-            Debug.Log("timeElapsed > journeyDist");
         }
 
         if (Vector3.Distance(target, unit.transform.position) <= 0.1f)
         {
-            Debug.Log("move completed");
             unit.transform.position = new Vector3(Mathf.Round(unit.transform.position.x), unit.transform.position.y, Mathf.Round(unit.transform.position.z));
             isMoving = false;
             currUnit = null;
