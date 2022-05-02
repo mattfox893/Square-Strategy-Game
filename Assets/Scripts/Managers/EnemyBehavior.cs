@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class EnemyBehavior : MonoBehaviour
 {
-    bool isMoving;
-    Unit currUnit;
-
     [SerializeField] float moveSpeed = 4f;
     public static EnemyBehavior Instance;
 
@@ -173,7 +170,6 @@ public class EnemyBehavior : MonoBehaviour
         Vector3 target = unit.transform.position + direction;
         Vector3 start = unit.transform.position;
         Tile startTile = GridManager.GetTile(new Vector2(start.x, start.z), null);
-        Tile targetTile = GridManager.GetTile(new Vector2(target.x, target.z), null);
 
         if (startTile.GetAttribute() == Attribute.Slow)
         {
@@ -182,18 +178,22 @@ public class EnemyBehavior : MonoBehaviour
 
         unit.MoveUnit(moveCost);
 
+        /*float timeElapsed = 0;
+        float journeyDist = 1f;*/
+
         while (Vector3.Distance(start, unit.transform.position) <= 1f)
+        //while (timeElapsed < journeyDist)
         {
             unit.transform.position += (target - start) * moveSpeed * Time.deltaTime;
+            /*timeElapsed += Time.deltaTime / moveSpeed;
+            unit.transform.position = Vector3.Lerp(start, target, timeElapsed / journeyDist);
+            Debug.Log(timeElapsed);*/
         }
 
-        if (Vector3.Distance(target, unit.transform.position) <= 0.1f)
+        if (Vector3.Distance(target, unit.transform.position) <= 0.05f)
         {
             unit.transform.position = new Vector3(Mathf.Round(unit.transform.position.x), unit.transform.position.y, Mathf.Round(unit.transform.position.z));
-            isMoving = false;
         }
-
-        //unit.transform.position = new Vector3(Mathf.Round(unit.transform.position.x), unit.transform.position.y, Mathf.Round(unit.transform.position.z));
     }
 
 /*
