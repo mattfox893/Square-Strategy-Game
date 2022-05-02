@@ -81,6 +81,30 @@ public class PlayerMovement : MonoBehaviour
         return direction;
     }
 
+    Vector3 DirectionAsRotation(Vector3 dir)
+    {
+        if (dir == new Vector3(-1, 0, 0))
+        {
+            return new Vector3(0, -90, 0);
+        }
+        else if (dir == new Vector3(0, 0, -1))
+        {
+            return new Vector3(0, 180, 0);
+        }
+        else if (dir == new Vector3(1, 0, 0))
+        {
+            return new Vector3(0, 90, 0);
+        }
+        else if (dir == new Vector3(0, 0, 1))
+        {
+            return new Vector3(0, 0, 0);
+        }
+        else
+        {
+            return new Vector3(0, 0, 0);
+        }
+    }
+
     IEnumerator Move(string dir)
     {
         isMoving = true;
@@ -104,7 +128,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
             selected.MoveUnit(moveCost);
-            selected.transform.Rotate(Vector3.RotateTowards(transform.forward, direction, 1f, 0f));
+            selected.transform.localEulerAngles = DirectionAsRotation(direction);
 
             while (Vector3.Distance(start, selected.transform.position) <= 1f)
             {
