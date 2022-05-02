@@ -167,7 +167,6 @@ public class Unit : MonoBehaviour
         bool isMagic = false;
         int damage = 0;
         int numAttacks = NumAttacks(target);
-        Debug.Log($"num attacks: {numAttacks}");
 
         if (inventory.HasEquipped())
         {
@@ -220,6 +219,7 @@ public class Unit : MonoBehaviour
     public bool inRange(Unit target)
     {
         // get a float of the distance between the interacting Units
+        gridPos = GetGridPos();
         float rangeWithin = Vector2.Distance(target.GetGridPos(), gridPos);
         // return whether the target is within the current Unit's range and not too close/far
         return (rangeWithin <= currRange && rangeWithin > currRange - 1);
