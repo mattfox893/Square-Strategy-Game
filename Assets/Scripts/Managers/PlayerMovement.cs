@@ -113,7 +113,7 @@ public class PlayerMovement : MonoBehaviour
         target = selected.transform.position + direction;
         start = selected.transform.position;
         startTile = GridManager.GetTile(new Vector2(start.x, start.z), startTile);
-        targetTile = GridManager.GetTile(new Vector2(target.x, target.z), startTile);
+        targetTile = GridManager.GetTile(new Vector2(target.x, target.z), null);
 
         selected.animator.SetBool("isWalking", true);
         if (targetTile != null && targetTile.GetAttribute() != Attribute.Impassable)
