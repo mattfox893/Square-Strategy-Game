@@ -104,6 +104,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
             selected.MoveUnit(moveCost);
+            selected.transform.Rotate(Vector3.RotateTowards(transform.forward, direction, 1f, 0f));
 
             while (Vector3.Distance(start, selected.transform.position) <= 1f)
             {

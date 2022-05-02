@@ -108,7 +108,7 @@ public class EnemyBehaviorRevised : MonoBehaviour
         foreach (Unit target in UnitManager.Instance.units)
         {
             // if there is an "Ally" within range to attack,
-            if (target.team == Team.Ally && unit.inRange(target))
+            if (target.team == Team.Ally && unit.InRange(target))
             {
                 // attack the target
                 unit.Attack(target);

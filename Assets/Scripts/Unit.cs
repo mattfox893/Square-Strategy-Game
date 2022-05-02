@@ -168,6 +168,7 @@ public class Unit : MonoBehaviour
         int damage = 0;
         int numAttacks = NumAttacks(target);
 
+        // add stats of weapon if one is equipped
         if (inventory.HasEquipped())
         {
             isMagic = inventory.GetEquippedType();
@@ -181,9 +182,14 @@ public class Unit : MonoBehaviour
         {
             animator.SetBool("Phys", true);
         }
-         
+
+        // turn to look at the target
+        transform.LookAt(target.transform);
+
+        // add base damage
         damage += isMagic ? currMagic : currStrength;
         
+        // attack a number of times determined by the calculation
         for(int i = 0; i < numAttacks; i++)
         {
             target.Damage(damage, isMagic);
@@ -205,10 +211,9 @@ public class Unit : MonoBehaviour
     {
         int attacks = 1;
 
+        // for every 3 speed greater than the target, attack another time
         if (currSpeed >= target.GetSpeed() + 3)
             attacks = (int) Mathf.Floor((currSpeed - target.GetSpeed()) / 3);
-        /*if (attacks > 1000)
-            attacks = 1000;*/
 
         return attacks;
     }
@@ -216,7 +221,7 @@ public class Unit : MonoBehaviour
 
     // The current Unit will call this to see if they are in range to hit
     // target
-    public bool inRange(Unit target)
+    public bool InRange(Unit target)
     {
         // get a float of the distance between the interacting Units
         gridPos = GetGridPos();
@@ -231,6 +236,8 @@ public class Unit : MonoBehaviour
         animator.SetBool("hasDied", true);
         tile = GetTile();
         tile.SetAttribute(Attribute.Normal);
+
+        // remove from Unit Manager
         UnitManager.Instance.units.Remove(this);
 
         if (team == Team.Ally)
@@ -260,67 +267,6 @@ public class Unit : MonoBehaviour
         currMovement = 0;
         state = UnitState.Acted;
     }
-
-
-    
-    /*switch (item)
-       {
-           case "Mana":
-               currMagic += 4; //Subject to change, depends on how powerful the enemies are/the unit is
-               break;
-           case "Strength":
-               currStrength += 4;
-               break;
-           case "Vitality":
-               if (currHealth <= unitStats.Health - 5)
-                   currHealth += 5;
-               else
-                   currHealth += (unitStats.Health - currHealth);
-               currDefense += 5;
-               break;
-           case "Stamina":
-               currSpeed += 1;
-               currMovement += 1;
-               break;
-       }*/
-    /*void OnCollisionEnter(Collision collided)
-    {
-        switch (collided.gameObject.name)
-        {
-            case "blue_pot":
-                if (potions.Item2 < potions.Item1.Length)
-                {
-                    potions.Item1[potions.Item2] = "Mana";
-                    potions.Item2 += 1;
-                    Destroy(collided.gameObject);
-                }
-                break;
-            case "red_pot":
-                if (potions.Item2 < potions.Item1.Length)
-                {
-                    potions.Item1[potions.Item2] = "Strength";
-                    potions.Item2 += 1;
-                    Destroy(collided.gameObject);
-                }
-                break;
-            case "green_pot":
-                if (potions.Item2 < potions.Item1.Length)
-                {
-                    potions.Item1[potions.Item2] = "Vitality";
-                    potions.Item2 += 1;
-                    Destroy(collided.gameObject);
-                }
-                break;
-            case "yellow_pot":
-                if (potions.Item2 < potions.Item1.Length)
-                {
-                    potions.Item1[potions.Item2] = "Stamina";
-                    potions.Item2 += 1;
-                    Destroy(collided.gameObject);
-                }
-                break;
-        }
-    }*/
 }
 
 public enum Team

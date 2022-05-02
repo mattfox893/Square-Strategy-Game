@@ -68,7 +68,7 @@ public class EnemyBehavior : MonoBehaviour
             targetPos = target.GetGridPos();
             currDist = Vector2.Distance(targetPos, unitPos);
 
-            if (unit.inRange(target))
+            if (unit.InRange(target))
             {
                 dir = "adjacent";
                 return dir;
@@ -112,7 +112,7 @@ public class EnemyBehavior : MonoBehaviour
             // Debug.Log($"potential target: {target.name} found by {unit.name}");
             // Vector2.Distance(unit.GetGridPos(), target.GetGridPos())
             // Debug.Log($"{target.name} in range of {unit.name}: {unit.inRange(target)}");
-            if (unit.inRange(target))
+            if (unit.InRange(target))
             {
                 // attack the target
                 unit.Attack(target);
