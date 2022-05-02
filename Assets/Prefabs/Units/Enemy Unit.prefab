@@ -678,7 +678,7 @@ GameObject:
   - component: {fileID: 9148442621681079170}
   - component: {fileID: 3639157811419639372}
   m_Layer: 0
-  m_Name: rotund_please_work
+  m_Name: Enemy Unit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
