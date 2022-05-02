@@ -51,9 +51,6 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        //debugging...
-        if (Input.GetKeyDown(KeyCode.Space) && TurnManager.Instance.turn == TurnState.PlayerTurn)
-            TurnManager.Instance.ChangeState(TurnState.EnemyTurn);
     }
 
     // convert a given string into a vector3 direction
