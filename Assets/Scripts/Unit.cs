@@ -11,7 +11,7 @@ public class Unit : MonoBehaviour
     public UnitState state;
     Vector2 gridPos;
     int currHealth, currSpeed, currStrength, currMagic, currRange, currDefense, currResilience, currMovement;
-    //Animator animator;
+    public Animator animator;
     public Inventory inventory;
 
     void Awake() 
@@ -22,7 +22,7 @@ public class Unit : MonoBehaviour
         tile = GetTile();
         tile.SetAttribute(Attribute.Impassable);
         inventory = this.GetComponent<Inventory>();
-        //animator = this.GetComponent<Animator>();
+        animator = this.GetComponent<Animator>();
     }
 
     void Update()
@@ -173,15 +173,15 @@ public class Unit : MonoBehaviour
             isMagic = inventory.GetEquippedType();
             damage += inventory.GetEquippedDamage();
         }
-        /*
-         * if (isMagic){
-         *  animator.SetBool("Mag", true);
-         * }
-         * else
-         * {
-         *  animator.SetBool("Phys", true);
-         * }
-         */
+        
+        if (isMagic){
+            animator.SetBool("Mag", true);
+        }
+        else
+        {
+            animator.SetBool("Phys", true);
+        }
+         
         damage += isMagic ? currMagic : currStrength;
         
         for(int i = 0; i < numAttacks; i++)
@@ -189,15 +189,15 @@ public class Unit : MonoBehaviour
             target.Damage(damage, isMagic);
         }
 
-        /*
-         * if (isMagic){
-         *  animator.SetBool("Mag", false);
-         * }
-         * else
-         * {
-         *  animator.SetBool("Phys", false);
-         * }
-         */
+        
+        if (isMagic){
+            animator.SetBool("Mag", false);
+        }
+        else
+        {
+            animator.SetBool("Phys", false);
+        }
+         
     }
 
     // The number of attacks to make against target based on the speed calculation.
@@ -228,7 +228,7 @@ public class Unit : MonoBehaviour
     // call this only when the Unit's health is reduced to 0 or they are instantly killed otherwise.
     void Death() 
     {
-        //animator.SetBool("hasDied", true);
+        animator.SetBool("hasDied", true);
         tile = GetTile();
         tile.SetAttribute(Attribute.Normal);
         UnitManager.Instance.units.Remove(this);

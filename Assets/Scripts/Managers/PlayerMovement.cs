@@ -94,6 +94,7 @@ public class PlayerMovement : MonoBehaviour
         startTile = GridManager.GetTile(new Vector2(start.x, start.z), startTile);
         targetTile = GridManager.GetTile(new Vector2(target.x, target.z), startTile);
 
+        selected.animator.SetBool("isWalking", true);
         if (targetTile != null && targetTile.GetAttribute() != Attribute.Impassable)
         {
             if (startTile.GetAttribute() == Attribute.Slow)
@@ -119,5 +120,6 @@ public class PlayerMovement : MonoBehaviour
             new Vector3(Mathf.Round(selected.transform.position.x), selected.transform.position.y, Mathf.Round(selected.transform.position.z));
 
         isMoving = false;
+        selected.animator.SetBool("isWalking", false);
     }
 }
