@@ -52,10 +52,14 @@ public class UnitSelection : MonoBehaviour
             // if the previously selected Unit was of team Ally and waiting to select target,
             if (selected != null && selected.team == Team.Ally && selected.state == UnitState.ActReady)
             {
-                // do something like set the valid target and change states
+                if (selected.InRange(toSelect))
+                {
+                    selected.Attack(toSelect);
+                    selected.EndTurn();
+                }
             }
-
             selected = toSelect;
+
         }
 
         highlight.SetActive(true);
