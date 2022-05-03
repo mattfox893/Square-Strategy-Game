@@ -12,6 +12,7 @@ public class Unit : MonoBehaviour
     Vector2 gridPos;
     int currHealth, currSpeed, currStrength, currMagic, currRange, currDefense, currResilience, currMovement;
     public Animator animator;
+    public AudioSource phys, mag, death;
     public Inventory inventory;
 
     void Awake() 
@@ -193,6 +194,14 @@ public class Unit : MonoBehaviour
         for(int i = 0; i < numAttacks; i++)
         {
             target.Damage(damage, isMagic);
+            if (isMagic)
+            {
+                mag.Play();
+            }
+            else
+            {
+                phys.Play();
+            }
         }
 
         
@@ -248,7 +257,7 @@ public class Unit : MonoBehaviour
         {
             UnitManager.Instance.enemies.Remove(this);
         }
-
+        death.Play();
         Destroy(this.gameObject);
     }
 

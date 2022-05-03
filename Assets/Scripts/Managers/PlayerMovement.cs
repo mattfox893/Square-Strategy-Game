@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     Tile startTile;
     Tile targetTile;
     Unit selected;
-    //Animator animator;
+    public AudioSource walking;
     // Update is called once per frame
 
     void Start()
@@ -132,6 +132,7 @@ public class PlayerMovement : MonoBehaviour
 
             while (Vector3.Distance(start, selected.transform.position) <= 1f)
             {
+                walking.Play();
                 selected.transform.position += (target - start) * moveSpeed * Time.deltaTime;
                 yield return null;
             }
