@@ -267,6 +267,7 @@ public class Unit : MonoBehaviour
         currMovement = 0;
         state = UnitState.Acted;
         UnitManager.Instance.CheckTeamStatus(Team.Ally);
+        UnitSelection.Instance.Deselect();
     }
 }
 

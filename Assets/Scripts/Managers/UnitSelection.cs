@@ -30,11 +30,17 @@ public class UnitSelection : MonoBehaviour
 
     public void SetSelected(Unit toSelect)
     {
+        // invalid input
         if (toSelect == null)
+            return;
+
+        // trying to select a friendly unit that has already acted
+        if (toSelect.team == Team.Ally && toSelect.state == UnitState.Acted)
             return;
 
         selectedTile = GridManager.GetTile(toSelect.GetGridPos(), selectedTile);
 
+        // if the unit is not on a valid tile
         if (selectedTile == null)
             return;
 
