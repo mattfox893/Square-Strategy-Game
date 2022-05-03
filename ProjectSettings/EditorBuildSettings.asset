@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/TestingLayouts.unity
     guid: ae832c7b368ddf9418ca75bfe72b7bb4
+  - enabled: 1
+    path: Assets/Scenes/Level 1.unity
+    guid: 7ed023aec05bdf542a1c8a33a32db221
+  - enabled: 1
+    path: Assets/Scenes/Start Screen.unity
+    guid: 4dbaebaa0efe82941b4d7707d06c8558
   m_configObjects: {}
