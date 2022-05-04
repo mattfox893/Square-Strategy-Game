@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 10
   Speed: 3
-  Strength: 10
-  Magic: 5
+  Strength: 6
+  Magic: 6
   Range: 1
   Defense: 3
   Resilience: 3
