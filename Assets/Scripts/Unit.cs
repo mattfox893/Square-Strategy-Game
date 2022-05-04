@@ -10,7 +10,7 @@ public class Unit : MonoBehaviour
     [SerializeField] public Team team;
     public UnitState state;
     Vector2 gridPos;
-    int currHealth, currSpeed, currStrength, currMagic, currRange, currDefense, currResilience, currMovement;
+    public int maxHealth, currHealth, currSpeed, currStrength, currMagic, currRange, currDefense, currResilience, currMovement, maxMovement;
     public Animator animator;
     public AudioSource phys, mag, death;
     public Inventory inventory;
@@ -62,14 +62,16 @@ public class Unit : MonoBehaviour
 
     void InitStats() 
     {
-        currHealth = unitStats.Health;
+        maxHealth = unitStats.Health;
+        currHealth = maxHealth;
         currSpeed = unitStats.Speed;
         currStrength = unitStats.Strength;
         currMagic = unitStats.Magic;
         currRange = unitStats.Range;
         currDefense = unitStats.Defense;
         currResilience = unitStats.Resilience;
-        currMovement = unitStats.Movement;
+        maxMovement = unitStats.Movement;
+        currMovement = maxMovement;
     }
 
     public Tile GetTile()

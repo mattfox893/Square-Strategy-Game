@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    float health;
-    float maxHealth;
+    public float health;
+    public float maxHealth;
 
     public GameObject healthUI;
     public Slider healthSlider;
