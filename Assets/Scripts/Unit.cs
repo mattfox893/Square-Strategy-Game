@@ -89,7 +89,10 @@ public class Unit : MonoBehaviour
     // dis
     public void MoveUnit(int dis) 
     {
-        currMovement -= dis;
+        if (currMovement - dis < 0)
+            currMovement = 0;
+        else
+            currMovement -= dis;
     }
 
     public int GetMovement() 
