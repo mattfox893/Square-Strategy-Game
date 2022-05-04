@@ -24,7 +24,6 @@ public class UnitManager : MonoBehaviour
             if (unit.team == Team.Ally)
             {
                 allies.Add(unit);
-                unit.Heal(99);
             } else if (unit.team == Team.Enemy)
             {
                 enemies.Add(unit);
@@ -99,6 +98,7 @@ public class UnitManager : MonoBehaviour
         foreach (Unit unit in allies)
         {
             unit.transform.position = new Vector3(unit.startPos.x, unit.transform.position.y, unit.startPos.y);
+            unit.Heal(99);
         }
     }
 
