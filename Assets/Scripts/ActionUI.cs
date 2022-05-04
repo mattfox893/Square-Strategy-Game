@@ -19,16 +19,18 @@ public class ActionUI : MonoBehaviour
 
     private void Awake()
     {
-        selected = UnitSelection.Instance.GetSelected();
+
     }
 
     // For now Action only removes the bar. Other actions can be added in later
     private void Action(int action)
     {
+        selected = UnitSelection.Instance.GetSelected();
+
         // 0 - Attack
         // 1 - Item
         // 2 - End Turn
-        switch(action)
+        switch (action)
         {
             case 0: // Attack
                 UnitSelection.Instance.selected.state = UnitState.ActReady;
