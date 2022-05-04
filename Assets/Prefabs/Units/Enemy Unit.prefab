@@ -715,10 +715,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: 
-  unitStats: {fileID: 11400000, guid: ae780d39395574340ac026629a8fb9c5, type: 2}
+  unitStats: {fileID: 11400000, guid: cd548e5c06ce5d94e9ce11c4b6ce9306, type: 2}
   team: 1
   state: 0
+  maxHealth: 0
+  currHealth: 0
+  currSpeed: 0
+  currStrength: 0
+  currMagic: 0
+  currRange: 0
+  currDefense: 0
+  currResilience: 0
+  currMovement: 0
+  maxMovement: 0
   animator: {fileID: 0}
+  phys: {fileID: 0}
+  mag: {fileID: 0}
+  death: {fileID: 0}
   inventory: {fileID: 0}
 --- !u!65 &1732474408213965534
 BoxCollider:
@@ -745,6 +758,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ec75f4b43bd76e4199ce09f49cfe442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
+  maxHealth: 0
   healthUI: {fileID: 2170012305036024663}
   healthSlider: {fileID: 2170012304436885743}
   unit: {fileID: 4715940030750113712}

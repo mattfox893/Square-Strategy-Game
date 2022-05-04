@@ -9,6 +9,7 @@ public class Unit : MonoBehaviour
     public Stats unitStats;
     [SerializeField] public Team team;
     public UnitState state;
+    public Vector2 startPos;
     Vector2 gridPos;
     public int maxHealth, currHealth, currSpeed, currStrength, currMagic, currRange, currDefense, currResilience, currMovement, maxMovement;
     public Animator animator;
@@ -24,6 +25,11 @@ public class Unit : MonoBehaviour
         tile.SetAttribute(Attribute.Impassable);
         inventory = this.GetComponent<Inventory>();
         animator = this.GetComponent<Animator>();
+        startPos = GetGridPos();
+        if (team == Team.Ally)
+        {
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     void Update()
@@ -259,8 +265,13 @@ public class Unit : MonoBehaviour
         {
             UnitManager.Instance.enemies.Remove(this);
         }
+
+        UnitManager.Instance.CheckTeamDefeated(team);
+
         death.Play();
+
         Destroy(this.gameObject);
+
     }
 
     public void StartTurn()

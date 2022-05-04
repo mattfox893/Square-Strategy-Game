@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UnitManager : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class UnitManager : MonoBehaviour
             if (unit.team == Team.Ally)
             {
                 allies.Add(unit);
+                unit.Heal(99);
             } else if (unit.team == Team.Enemy)
             {
                 enemies.Add(unit);
@@ -47,6 +49,27 @@ public class UnitManager : MonoBehaviour
         TurnManager.Instance.ChangeState(newState);
     }
 
+    // Check if all members of team have been defeated, if so go to the next level/quit
+    public void CheckTeamDefeated(Team team)
+    {
+        foreach (Unit unit in units)
+        {
+            if (unit.team == team)
+            {
+                return;
+            }
+        }
+
+        if (team == Team.Ally)
+        {
+            SceneManager.LoadScene(0);
+        } else if (SceneManager.GetActiveScene().buildIndex < 3)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            ResetUnits();
+        }
+    }
+
     // Called at the start of a turn for Team team
     public void StartAll(Team team)
     {
@@ -68,6 +91,14 @@ public class UnitManager : MonoBehaviour
             {
                 unit.EndTurn();
             }
+        }
+    }
+
+    public void ResetUnits()
+    {
+        foreach (Unit unit in allies)
+        {
+            unit.transform.position = new Vector3(unit.startPos.x, unit.transform.position.y, unit.startPos.y);
         }
     }
 

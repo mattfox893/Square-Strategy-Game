@@ -39336,91 +39336,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 645108732}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &649201699
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 227726442987564751, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 227726442987564751, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1393056900435920562, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
-      propertyPath: m_Name
-      value: Calico Jack
-      objectReference: {fileID: 0}
-    - target: {fileID: 1738091979697527816, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1738091979697527816, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1738091979697527816, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1738091979697527816, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1738091979697527816, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1738091979697527816, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1738091979697527816, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1738091979697527816, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1738091979697527816, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1738091979697527816, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1738091979697527816, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2275522942875159843, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
-      propertyPath: mag
-      value: 
-      objectReference: {fileID: 1765489982}
-    - target: {fileID: 2275522942875159843, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
-      propertyPath: name
-      value: Calico Jack
-      objectReference: {fileID: 0}
-    - target: {fileID: 2275522942875159843, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
-      propertyPath: phys
-      value: 
-      objectReference: {fileID: 1765489983}
-    - target: {fileID: 2275522942875159843, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
-      propertyPath: death
-      value: 
-      objectReference: {fileID: 1765489979}
-    - target: {fileID: 7729357286820478589, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 66a31e2506f7dda4e9977ce70ee45030, type: 2}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
 --- !u!1 &651457908
 GameObject:
   m_ObjectHideFlags: 0
@@ -78554,7 +78469,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1738091979697527816, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1738091979697527816, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
       propertyPath: m_LocalPosition.x
@@ -97490,7 +97405,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6230670408391190412, guid: 30a805772fb4cf44ea52a50daeab7868, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6230670408391190412, guid: 30a805772fb4cf44ea52a50daeab7868, type: 3}
       propertyPath: m_AnchorMax.x
@@ -105520,91 +105435,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1688445249}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &1688674488
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 227726442987564751, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 227726442987564751, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1393056900435920562, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
-      propertyPath: m_Name
-      value: Blackbeard
-      objectReference: {fileID: 0}
-    - target: {fileID: 1738091979697527816, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1738091979697527816, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1738091979697527816, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1738091979697527816, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1738091979697527816, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1738091979697527816, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1738091979697527816, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1738091979697527816, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1738091979697527816, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1738091979697527816, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1738091979697527816, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2275522942875159843, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
-      propertyPath: mag
-      value: 
-      objectReference: {fileID: 1765489982}
-    - target: {fileID: 2275522942875159843, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
-      propertyPath: name
-      value: Blackbeard
-      objectReference: {fileID: 0}
-    - target: {fileID: 2275522942875159843, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
-      propertyPath: phys
-      value: 
-      objectReference: {fileID: 1765489983}
-    - target: {fileID: 2275522942875159843, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
-      propertyPath: death
-      value: 
-      objectReference: {fileID: 1765489979}
-    - target: {fileID: 7729357286820478589, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 66a31e2506f7dda4e9977ce70ee45030, type: 2}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
 --- !u!1 &1689479896
 GameObject:
   m_ObjectHideFlags: 0
