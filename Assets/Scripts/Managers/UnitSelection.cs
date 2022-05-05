@@ -38,7 +38,7 @@ public class UnitSelection : MonoBehaviour
         if (toSelect.team == Team.Ally && toSelect.state == UnitState.Acted)
             return;
 
-        if (selected != null && selected.state == UnitState.ActReady)
+        if (selected != null && toSelect.team == Team.Ally && selected.state == UnitState.ActReady)
             selected.state = UnitState.NotActed;
 
         selectedTile = GridManager.GetTile(toSelect.GetGridPos(), selectedTile);
