@@ -93,6 +93,7 @@ public class UnitManager : MonoBehaviour
         }
     }
 
+    // reset allies to their starting positions for the start of a level
     public void ResetUnits()
     {
         foreach (Unit unit in allies)
@@ -102,6 +103,7 @@ public class UnitManager : MonoBehaviour
         }
     }
 
+    // perform the enemies' turn
     public void EnemyTurn()
     {
         foreach (Unit unit in enemies)
@@ -110,8 +112,19 @@ public class UnitManager : MonoBehaviour
         }
     }
 
+    // return the number of units who can still act
     public int GetUnitsLeft()
     {
-        return 0;
+        int count = 0;
+        
+        foreach (Unit unit in allies)
+        {
+            if (unit.state != UnitState.Acted)
+            {
+                count += 1;
+            }
+        }
+
+        return count;
     }
 }
