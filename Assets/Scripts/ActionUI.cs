@@ -39,7 +39,7 @@ public class ActionUI : MonoBehaviour
                 UnitSelection.Instance.selected.state = UnitState.ActReady;
                 break;
             case 1: // Item/Open inv
-                inventory.openInventory();
+                inventory.ToggleInventory();
                 break;
             case 2: // Pass/End turn for unit
                 selected.EndTurn();

@@ -12,9 +12,17 @@ public class InventoryUI : MonoBehaviour
     {
         inventory.gameObject.SetActive(false);
     }
-    public void openInventory()
+    public void ToggleInventory()
     {
-        inventory.gameObject.SetActive(true);
+        if (!inventory.gameObject.activeInHierarchy)
+        {
+            inventory.gameObject.SetActive(true);
+        } 
+        else
+        {
+            inventory.gameObject.SetActive(false);
+        }
+        
     }
 
     // Update is called once per frame
