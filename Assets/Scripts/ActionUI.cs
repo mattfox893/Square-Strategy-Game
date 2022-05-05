@@ -8,6 +8,7 @@ public class ActionUI : MonoBehaviour
     public Button attackButton;
     public Button itemButton;
     public Button endTurnButton;
+    public InventoryUI inventory;
     Unit selected;
     Color startCol;
 
@@ -38,6 +39,7 @@ public class ActionUI : MonoBehaviour
                 UnitSelection.Instance.selected.state = UnitState.ActReady;
                 break;
             case 1: // Item/Open inv
+                inventory.openInventory();
                 break;
             case 2: // Pass/End turn for unit
                 selected.EndTurn();
