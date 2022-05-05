@@ -188,11 +188,11 @@ public class Unit : MonoBehaviour
         }
         
         if (isMagic){
-            animator.SetBool("Mag", true);
+            animator.Play("Base Layer.Mag");
         }
         else
         {
-            animator.SetBool("Phys", true);
+            animator.Play("Base Layer.Phys");
         }
 
         // turn to look at the target
@@ -213,15 +213,6 @@ public class Unit : MonoBehaviour
             {
                 phys.Play();
             }
-        }
-
-        
-        if (isMagic){
-            animator.SetBool("Mag", false);
-        }
-        else
-        {
-            animator.SetBool("Phys", false);
         }
          
     }
@@ -253,7 +244,10 @@ public class Unit : MonoBehaviour
     // call this only when the Unit's health is reduced to 0 or they are instantly killed otherwise.
     void Death() 
     {
-        animator.SetBool("hasDied", true);
+        if (this.team == Team.Ally)
+            animator.Play("Death");
+        else
+            animator.SetBool("hasDied", true);
         tile = GetTile();
         tile.SetAttribute(Attribute.Normal);
 
@@ -294,6 +288,8 @@ public class Unit : MonoBehaviour
         UnitManager.Instance.CheckTeamStatus(Team.Ally);
         UnitSelection.Instance.Deselect();
     }
+
+    
 }
 
 public enum Team

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item
+public class Item : MonoBehaviour
 {
     public string name;
     public ItemType type;
@@ -58,6 +58,7 @@ public class Item
     {
         owner.GetInventory().Equip(this);
     }
+
 
     void UsePotion(Unit owner)
     {
