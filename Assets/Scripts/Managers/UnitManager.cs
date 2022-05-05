@@ -109,4 +109,9 @@ public class UnitManager : MonoBehaviour
             EnemyBehavior.Instance.Act(unit);
         }
     }
+
+    public int GetUnitsLeft()
+    {
+        return 0;
+    }
 }

@@ -9,10 +9,12 @@ public class ActionUI : MonoBehaviour
     public Button itemButton;
     public Button endTurnButton;
     Unit selected;
+    Color startCol;
 
     void Start()
     {
         attackButton.onClick.AddListener(delegate { Action(0); });
+        startCol = attackButton.GetComponent<Image>().color;
         itemButton.onClick.AddListener(delegate { Action(1); });
         endTurnButton.onClick.AddListener(delegate { Action(2); });
     }
@@ -49,6 +51,12 @@ public class ActionUI : MonoBehaviour
 
     public void Update()
     {
-
+        if (UnitSelection.Instance.selected.state == UnitState.ActReady)
+        {
+            attackButton.GetComponent<Image>().color = Color.red;
+        } else
+        {
+            attackButton.GetComponent<Image>().color = startCol;
+        }
     }
 }

@@ -38,6 +38,7 @@ public class UnitSelection : MonoBehaviour
         if (toSelect.team == Team.Ally && toSelect.state == UnitState.Acted)
             return;
 
+        // if you clicked attack and then clicked on a friendly unit
         if (selected != null && toSelect.team == Team.Ally && selected.state == UnitState.ActReady)
             selected.state = UnitState.NotActed;
 
@@ -67,6 +68,9 @@ public class UnitSelection : MonoBehaviour
                 {
                     selected.Attack(toSelect);
                     selected.EndTurn();
+                } else
+                {
+                    selected.state = UnitState.NotActed;
                 }
             }
 
