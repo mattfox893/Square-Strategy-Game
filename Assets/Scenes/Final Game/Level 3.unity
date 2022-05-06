@@ -5528,7 +5528,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1393056900435920562, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
       propertyPath: m_Name
-      value: Ally Unit Standard
+      value: William Kidd
       objectReference: {fileID: 0}
     - target: {fileID: 1738091979697527816, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
       propertyPath: m_RootOrder
@@ -5578,6 +5578,10 @@ PrefabInstance:
       propertyPath: mag
       value: 
       objectReference: {fileID: 91101846}
+    - target: {fileID: 2275522942875159843, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
+      propertyPath: name
+      value: William Kidd
+      objectReference: {fileID: 0}
     - target: {fileID: 2275522942875159843, guid: 9a1036619b5c93b478013766b7fb5c54, type: 3}
       propertyPath: phys
       value: 
