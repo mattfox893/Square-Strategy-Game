@@ -593,7 +593,7 @@ GameObject:
   - component: {fileID: 1395230698}
   - component: {fileID: 1395230699}
   m_Layer: 5
-  m_Name: Main Menu
+  m_Name: Victory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -780,7 +780,7 @@ GameObject:
   - component: {fileID: 1582295142}
   - component: {fileID: 1582295141}
   m_Layer: 5
-  m_Name: Play
+  m_Name: Next Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
