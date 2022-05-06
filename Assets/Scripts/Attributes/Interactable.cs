@@ -6,19 +6,6 @@ public class Interactable : MonoBehaviour
 {
     public Item item;
     Unit selected;
-    private void OnCollisionEnter(Collision col)
-    {
-        Debug.Log("collided!");
-        /*Unit collided = col.gameObject.GetComponent<Unit>();
-        if (collided != null)
-        {
-            if (collided.team == Team.Ally)
-            {
-                collided.GetInventory().AddItem(item);
-                Destroy(this.gameObject);
-            }
-        }*/
-    }
 
     private void Update()
     {
