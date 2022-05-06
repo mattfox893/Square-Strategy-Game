@@ -38,6 +38,17 @@ public class Tile : MonoBehaviour
     }
 
     public Unit GetUnit() {
+        List<Unit> units = UnitManager.Instance.units;
+        onTile = null;
+
+        foreach (Unit unit in units)
+        {
+            if (unit.GetGridPos() == position)
+            {
+                onTile = unit;
+            }
+        }
+
         return onTile;
     }
 }

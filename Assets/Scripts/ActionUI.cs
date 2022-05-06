@@ -18,6 +18,7 @@ public class ActionUI : MonoBehaviour
         startCol = attackButton.GetComponent<Image>().color;
         itemButton.onClick.AddListener(delegate { Action(1); });
         endTurnButton.onClick.AddListener(delegate { Action(2); });
+        Debug.Log($"inventory ui: {inventory}");
     }
 
     private void Awake()

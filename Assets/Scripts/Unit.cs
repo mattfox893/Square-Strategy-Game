@@ -14,7 +14,7 @@ public class Unit : MonoBehaviour
     public int maxHealth, currHealth, currSpeed, currStrength, currMagic, currRange, currDefense, currResilience, currMovement, maxMovement;
     public Animator animator;
     public AudioSource phys, mag, death;
-    public Inventory inventory;
+    Inventory inventory;
 
     void Awake() 
     {
