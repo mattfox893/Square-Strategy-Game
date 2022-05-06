@@ -66,6 +66,9 @@ public class UnitManager : MonoBehaviour
         {
             SceneManager.LoadScene(5);
             ResetUnits();
+        } else if (SceneManager.GetActiveScene().buildIndex == 3)
+        {
+            SceneManager.LoadScene(6);
         }
     }
 
