@@ -34,6 +34,11 @@ public class Inventory : MonoBehaviour
         return items.Remove(item);
     }
 
+    public void UseItem(int i)
+    {
+        UseItem(items[i]);
+    }
+
     public bool UseItem(Item item)
     {
         if (item == null)

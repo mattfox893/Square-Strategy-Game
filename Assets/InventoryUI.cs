@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class InventoryUI : MonoBehaviour
 {
     public Inventory inventory;
@@ -50,9 +50,18 @@ public class InventoryUI : MonoBehaviour
             pos.y = pos.y - 40*i;
             newItem.transform.position = pos;
             newItem.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = items[i].name;
+            var i2 = i;
+            newItem.GetComponent<Button>().onClick.AddListener(delegate { Use(i2); });
 
         }
 
+    }
+
+    public void Use(int i)
+    {
+        inventory.UseItem(items[i]);
+        closeInventory();
+        ToggleInventory();
     }
 
     // Update is called once per frame
