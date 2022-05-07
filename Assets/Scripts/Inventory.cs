@@ -28,7 +28,7 @@ public class Inventory : MonoBehaviour
         if (item == null)
             return false;
 
-        if (item.name == "Physical" || item.name == "Magical")
+        if (item.type == ItemType.Weapon)
             return true;
 
         return items.Remove(item);

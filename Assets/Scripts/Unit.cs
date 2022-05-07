@@ -66,7 +66,7 @@ public class Unit : MonoBehaviour
         return inventory;
     }
 
-    void InitStats() 
+    public void InitStats() 
     {
         maxHealth = unitStats.Health;
         currHealth = maxHealth;

@@ -60,7 +60,6 @@ public class InventoryUI : MonoBehaviour
     public void Use(int i)
     {
         inventory.UseItem(items[i]);
-        closeInventory();
         ToggleInventory();
     }
 

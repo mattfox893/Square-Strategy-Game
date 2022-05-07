@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a005810a110df4f860f3e0c4cf4202, type: 3}
   m_Name: Default Enemy Stats
   m_EditorClassIdentifier: 
-  Health: 6
+  Health: 7
   Speed: 3
   Strength: 5
   Magic: 5
   Range: 1
   Defense: 3
-  Resilience: 3
+  Resilience: 1
   Movement: 4

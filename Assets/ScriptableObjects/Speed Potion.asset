@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c5cb3651a2d394d499e5231579b75781, type: 3}
-  m_Name: Iron Sword
+  m_Name: Speed Potion
   m_EditorClassIdentifier: 
-  name: Iron Sword
-  type: 0
-  potType: 99
+  name: Speed Potion
+  type: 1
+  potType: 2
   isMagic: 0
-  damage: 2
+  damage: 0
