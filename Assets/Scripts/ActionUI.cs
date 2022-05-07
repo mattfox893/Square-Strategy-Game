@@ -37,11 +37,13 @@ public class ActionUI : MonoBehaviour
         {
             case 0: // Attack
                 UnitSelection.Instance.selected.state = UnitState.ActReady;
+                inventory.closeInventory();
                 break;
             case 1: // Item/Open inv
                 inventory.ToggleInventory();
                 break;
             case 2: // Pass/End turn for unit
+                inventory.closeInventory();
                 selected.EndTurn();
                 break;
             default:

@@ -5790,6 +5790,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inventory Panel
       objectReference: {fileID: 0}
+    - target: {fileID: 5262608064912671732, guid: a4d7eb4de35ae7d4db2673fd86317917, type: 3}
+      propertyPath: itemPrefab
+      value: 
+      objectReference: {fileID: 3179955375284439573, guid: ed6172e294b44a343b2544bafab3d2dd, type: 3}
+    - target: {fileID: 5262608064912671732, guid: a4d7eb4de35ae7d4db2673fd86317917, type: 3}
+      propertyPath: itemContainer
+      value: 
+      objectReference: {fileID: 951005488}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4d7eb4de35ae7d4db2673fd86317917, type: 3}
 --- !u!114 &89035633 stripped
@@ -56996,6 +57004,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 950991020}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &951005488 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5262608065295581492, guid: a4d7eb4de35ae7d4db2673fd86317917, type: 3}
+  m_PrefabInstance: {fileID: 89035632}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &956310658
 GameObject:
   m_ObjectHideFlags: 0
