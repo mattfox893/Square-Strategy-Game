@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 5262608064912671733}
-  itemPrefab: {fileID: 0}
+  itemPrefab: {fileID: 3179955375284439573, guid: ed6172e294b44a343b2544bafab3d2dd, type: 3}
   itemContainer: {fileID: 0}
 --- !u!1 &5262608065295581492
 GameObject:

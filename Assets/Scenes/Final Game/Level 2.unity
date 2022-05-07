@@ -111720,6 +111720,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inventory Panel
       objectReference: {fileID: 0}
+    - target: {fileID: 5262608064912671732, guid: a4d7eb4de35ae7d4db2673fd86317917, type: 3}
+      propertyPath: itemContainer
+      value: 
+      objectReference: {fileID: 1771191496}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4d7eb4de35ae7d4db2673fd86317917, type: 3}
 --- !u!114 &1771191495 stripped
@@ -111733,6 +111737,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8d401519bd657d41b5772d92bf76497, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1771191496 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5262608065295581492, guid: a4d7eb4de35ae7d4db2673fd86317917, type: 3}
+  m_PrefabInstance: {fileID: 1771191494}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1772696599
 GameObject:
   m_ObjectHideFlags: 0

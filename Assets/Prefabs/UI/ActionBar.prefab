@@ -508,6 +508,7 @@ MonoBehaviour:
   attackButton: {fileID: 6994356487978520904}
   itemButton: {fileID: 1559903241829931117}
   endTurnButton: {fileID: 8645315450343488723}
+  inventory: {fileID: 0}
 --- !u!1 &5880550548960433999
 GameObject:
   m_ObjectHideFlags: 0
