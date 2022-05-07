@@ -23932,6 +23932,7 @@ GameObject:
   - component: {fileID: 386742426}
   - component: {fileID: 386742425}
   - component: {fileID: 386742424}
+  - component: {fileID: 386742429}
   m_Layer: 5
   m_Name: Level Number
   m_TagString: Untagged
@@ -24058,6 +24059,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &386742429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386742422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0158c1881080b94984b6d465223e8a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &387133114 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cd8a38ba7b42ce34480c43a8b921490c, type: 3}

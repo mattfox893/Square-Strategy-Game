@@ -61,14 +61,16 @@ public class UnitManager : MonoBehaviour
 
         if (team == Team.Ally)
         {
-            SceneManager.LoadScene(4);
-        } else if (SceneManager.GetActiveScene().buildIndex < 3)
-        {
-            SceneManager.LoadScene(5);
-            ResetUnits();
-        } else if (SceneManager.GetActiveScene().buildIndex == 3)
-        {
             SceneManager.LoadScene(6);
+        } 
+        else if (SceneManager.GetActiveScene().buildIndex < 5)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            ResetUnits();
+        } 
+        else if (SceneManager.GetActiveScene().buildIndex == 5)
+        {
+            SceneManager.LoadScene(7);
         }
     }
 
